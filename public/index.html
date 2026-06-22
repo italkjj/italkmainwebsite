@@ -12,6 +12,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   #trial-modal { display:none; opacity:0; transition:opacity .2s ease; }
   #trial-modal.show { display:flex; opacity:1; }
@@ -489,8 +490,7 @@
         </button>
       </div>
     </div>
-    <form id="trial-form" name="무료체험신청" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="px-8 py-6 space-y-4" novalidate>
-      <input type="hidden" name="form-name" value="무료체험신청">
+    <form id="trial-form" class="px-8 py-6 space-y-4" novalidate>
       <p class="hidden"><input name="bot-field"></p>
       <div>
         <label class="block text-sm font-semibold text-[#1b1c1c] mb-1.5" for="f-name"><span data-i18n="modal.name">이름</span> <span class="text-[#ba1a1a]">*</span></label>
@@ -554,6 +554,14 @@
 <script src="image-fallback.js"></script>
 <script src="lang.js"></script>
 <script>
+// ── EmailJS configuration ──────────────────────────────────────────────────
+// Sign up at https://www.emailjs.com, create a service + template, then
+// replace the three placeholder values below.
+const TRIAL_EMAILJS_SERVICE_ID  = 'service_ydbmks1';
+const TRIAL_EMAILJS_TEMPLATE_ID = 'template_w21jkas';
+const TRIAL_EMAILJS_PUBLIC_KEY  = 'mUzj_VvL-__k6ltia';
+// ──────────────────────────────────────────────────────────────────────────
+
 // Mobile menu
 const hamburger = document.getElementById('hamburger');
 const icon = document.getElementById('hamburger-icon');
@@ -645,19 +653,17 @@ document.getElementById('trial-form').addEventListener('submit', async e => {
     .map(c => c.textContent.trim()).join(', ') || '미선택';
 
   try {
-    const formData = new URLSearchParams({
-      'form-name': '무료체험신청',
-      '이름': name.value.trim(),
-      '연락처': phone.value.trim(),
-      '영어수준': level.value,
-      '학습목표': goals,
-    });
-    const res = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
-    });
-    if (!res.ok) throw new Error('서버 오류: ' + res.status);
+    await emailjs.send(
+      TRIAL_EMAILJS_SERVICE_ID,
+      TRIAL_EMAILJS_TEMPLATE_ID,
+      {
+        from_name: name.value.trim(),
+        phone:     phone.value.trim(),
+        level:     level.value,
+        goals:     goals,
+      },
+      TRIAL_EMAILJS_PUBLIC_KEY
+    );
     closeModal();
     document.getElementById('trial-form').reset();
     document.querySelectorAll('.goal-chip').forEach(c => c.classList.remove('selected'));
