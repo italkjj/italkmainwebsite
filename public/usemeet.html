@@ -7,20 +7,15 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-  body { font-family: "Plus Jakarta Sans", sans-serif; }
-  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
-  .shadow-card { box-shadow: 0 10px 30px rgba(33,33,33,0.07); }
-  #mobile-menu { max-height:0; overflow:hidden; transition:max-height .35s ease, opacity .25s ease; opacity:0; }
-  #mobile-menu.open { max-height:400px; opacity:1; }
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease,transform .65s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+  /* Step timeline — usemeet.html specific */
   .step-line::before {
     content:''; position:absolute; left:24px; top:56px; bottom:-32px;
     width:2px; background:linear-gradient(to bottom, #ffcd4a, #ffcd4a80);
   }
   .step-line:last-child::before { display:none; }
-  /* Tab underline */
+  /* Device tabs */
   .tab-active { border-bottom:3px solid #775a00; color:#775a00; font-weight:700; }
   .tab-panel { display:none; }
   .tab-panel.active { display:block; }
@@ -29,9 +24,6 @@
   .faq-body.open { max-height:300px; }
   .faq-chevron { transition:transform 0.25s; }
   .faq-chevron.open { transform:rotate(180deg); }
-  .lang-btn { padding:3px 8px; border-radius:6px; font-size:11px; font-weight:700; color:#4e4634; transition:background .15s,color .15s; }
-  .lang-btn:hover { background:#f5f3f3; }
-  .lang-active { background:#ffcd4a !important; color:#735700 !important; }
 </style>
 </head>
 <body class="bg-[#fbf9f8] text-[#1b1c1c] overflow-x-hidden">
@@ -65,7 +57,6 @@
       <a href="index.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.home">홈</a>
       <a href="teachers.html"   class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.teachers">선생님 소개</a>
       <a href="videos.html"     class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.videos">소개 영상</a>
-      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
       <a href="books.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.books">대표 교재</a>
       <a href="usemeet.html"    class="px-4 py-3 rounded-xl font-semibold text-[#775a00] bg-[#ffcd4a]/10" data-i18n="nav.guide">이용 가이드</a>
       <!-- Mobile lang switcher -->
@@ -486,7 +477,7 @@
     <div class="flex flex-wrap gap-4 text-sm text-[#636262]">
       <a href="index.html"      class="hover:text-[#775a00]" data-i18n="nav.home">홈</a>
       <a href="teachers.html"   class="hover:text-[#775a00]" data-i18n="nav.teachers">선생님 소개</a>
-      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
+      <a href="videos.html"     class="hover:text-[#775a00]" data-i18n="nav.videos">소개 영상</a>
       <a href="books.html"      class="hover:text-[#775a00]" data-i18n="nav.books">대표 교재</a>
     </div>
   </div>

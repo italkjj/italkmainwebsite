@@ -1,0 +1,67 @@
+/* ============================================================
+   ITALK Shared Stylesheet
+   Common styles extracted from per-page <style> blocks.
+   Page-specific styles (flip cards, book cards, etc.)
+   remain inline in each page's own <style> block.
+   ============================================================ */
+
+/* Base typography */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Material Symbols default variation */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Card shadow */
+.shadow-card {
+  box-shadow: 0 10px 30px rgba(33, 33, 33, 0.07);
+}
+
+/* Mobile menu slide-down */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+#mobile-menu.open {
+  max-height: 520px;
+  opacity: 1;
+}
+
+/* Scroll-reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Language switcher buttons */
+.lang-btn {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4e4634;
+  transition: background 0.15s, color 0.15s;
+}
+.lang-btn:hover {
+  background: #f5f3f3;
+}
+.lang-active {
+  background: #ffcd4a !important;
+  color: #735700 !important;
+}
+
+/* Nav link — visual handled by Tailwind classes; this is a JS selector target */
+.nav-link {}
+
+/* Trial button — visual handled by Tailwind classes; this is a JS selector target */
+.trial-btn {}

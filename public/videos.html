@@ -9,14 +9,9 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-  body { font-family: "Plus Jakarta Sans", sans-serif; }
-  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
-  .shadow-card { box-shadow: 0 10px 30px rgba(33,33,33,0.07); }
-  #mobile-menu { max-height:0; overflow:hidden; transition:max-height .35s ease, opacity .25s ease; opacity:0; }
-  #mobile-menu.open { max-height:500px; opacity:1; }
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease,transform .65s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+  /* Video thumbnails & modal — videos.html specific */
   .video-thumb { position:relative; cursor:pointer; overflow:hidden; }
   .video-thumb img { transition: transform 0.4s ease; width:100%; height:100%; object-fit:cover; }
   .video-thumb:hover img { transform: scale(1.04); }
@@ -26,9 +21,6 @@
   .video-thumb:hover .play-icon { transform:scale(1.1); }
   #yt-modal { display:none; }
   #yt-modal.show { display:flex; }
-  .lang-btn { padding:3px 8px; border-radius:6px; font-size:11px; font-weight:700; color:#4e4634; transition:background .15s,color .15s; }
-  .lang-btn:hover { background:#f5f3f3; }
-  .lang-active { background:#ffcd4a !important; color:#735700 !important; }
 </style>
 </head>
 <body class="bg-[#fbf9f8] text-[#1b1c1c] overflow-x-hidden">
@@ -226,6 +218,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer class="bg-[#1b1c1c] text-[#c4c7ca] py-12">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -243,7 +237,6 @@
     </div>
   </div>
 </footer>
-</main>
 
 <!-- YouTube Modal — works for both regular videos AND Shorts -->
 <div id="yt-modal" class="fixed inset-0 z-[300] items-center justify-center bg-black/80 backdrop-blur-sm p-4" onclick="closeVideo(event)">

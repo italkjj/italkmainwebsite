@@ -7,23 +7,14 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-  body { font-family: "Plus Jakarta Sans", sans-serif; }
-  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
-  .shadow-card { box-shadow: 0 10px 30px rgba(33,33,33,0.07); }
-  #mobile-menu { max-height:0; overflow:hidden; transition:max-height .35s ease, opacity .25s ease; opacity:0; }
-  #mobile-menu.open { max-height:400px; opacity:1; }
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease,transform .65s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
-  /* Flip card */
+  /* Flip card — teachers.html specific */
   .flip-card { perspective: 1000px; }
   .flip-inner { transition: transform 0.6s; transform-style: preserve-3d; position:relative; }
   .flip-card:hover .flip-inner { transform: rotateY(180deg); }
   .flip-front, .flip-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .flip-back { transform: rotateY(180deg); position:absolute; inset:0; }
-  .lang-btn { padding:3px 8px; border-radius:6px; font-size:11px; font-weight:700; color:#4e4634; transition:background .15s,color .15s; }
-  .lang-btn:hover { background:#f5f3f3; }
-  .lang-active { background:#ffcd4a !important; color:#735700 !important; }
 </style>
 </head>
 <body class="bg-[#fbf9f8] text-[#1b1c1c] overflow-x-hidden">
@@ -57,7 +48,6 @@
       <a href="index.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.home">홈</a>
       <a href="teachers.html"   class="px-4 py-3 rounded-xl font-semibold text-[#775a00] bg-[#ffcd4a]/10" data-i18n="nav.teachers">선생님 소개</a>
       <a href="videos.html"     class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.videos">소개 영상</a>
-      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
       <a href="books.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.books">대표 교재</a>
       <a href="usemeet.html"    class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.guide">이용 가이드</a>
       <!-- Mobile lang switcher -->
@@ -100,7 +90,7 @@
           <!-- Front -->
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBdxUWYJjfHcjJ0EkP0Snl-WSW51Paj9-wHB9PofCVNCPI9GSIrMlPONY0Z3aclJcVa7vkRdMVlOqBw6lJaXem3D5LIEr5dJy4g9Ps08Z2dTPlpLR9bFXM0zE3B6Mt5zw_lHFKG9W99BHx_olYWuLQLvvvhsahLVBHBESJJr1_HpfEkxGLZjPXImMz5P0tm8MbSLpOAEI0s7yJwgx9HK8EW3TIohQWzbTrK5pk=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23775a00'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='%23ffcd4a' font-family='Arial,sans-serif' font-weight='bold'%3EMF%3C/text%3E%3C/svg%3E"
                 alt="Maria Rosette L. Fabian" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t1.badge">경력 18년</div>
             </div>
@@ -121,7 +111,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBdxUWYJjfHcjJ0EkP0Snl-WSW51Paj9-wHB9PofCVNCPI9GSIrMlPONY0Z3aclJcVa7vkRdMVlOqBw6lJaXem3D5LIEr5dJy4g9Ps08Z2dTPlpLR9bFXM0zE3B6Mt5zw_lHFKG9W99BHx_olYWuLQLvvvhsahLVBHBESJJr1_HpfEkxGLZjPXImMz5P0tm8MbSLpOAEI0s7yJwgx9HK8EW3TIohQWzbTrK5pk=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23775a00'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='%23ffcd4a' font-family='Arial,sans-serif' font-weight='bold'%3EMF%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Maria Rosette L. Fabian</h3>
@@ -156,7 +146,7 @@
         <div class="flip-inner w-full h-full">
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDKLs8bno_Yk0GmpuWEQvLeuCNOzsr22Q-vNEtKwpiUBRLmMpK4Pyeoa3jZygBnpJ6R1EfRLicwxglmvFDQ_SWwg6J0uMhyW-rqR4-SGTUan7sd9NBlgcz5L16cm7SlbpfQ-ddCYdFjuakbb8_Z2JRsb9n1TjdsZuiR8EZDncS9TfG-ecjbNU56bObH7YoEpnTH17VOdVi6TcHl-K5iV6KefzlOTrF5MxGX=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%232d4a2f'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EBM%3C/text%3E%3C/svg%3E"
                 alt="Bernadette D. Macaraeg" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t2.badge">아이톡 전임 강사</div>
             </div>
@@ -176,7 +166,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDKLs8bno_Yk0GmpuWEQvLeuCNOzsr22Q-vNEtKwpiUBRLmMpK4Pyeoa3jZygBnpJ6R1EfRLicwxglmvFDQ_SWwg6J0uMhyW-rqR4-SGTUan7sd9NBlgcz5L16cm7SlbpfQ-ddCYdFjuakbb8_Z2JRsb9n1TjdsZuiR8EZDncS9TfG-ecjbNU56bObH7YoEpnTH17VOdVi6TcHl-K5iV6KefzlOTrF5MxGX=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%232d4a2f'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EBM%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Bernadette D. Macaraeg</h3>
@@ -209,7 +199,7 @@
         <div class="flip-inner w-full h-full">
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUADUpTtsQkyGO040xtL1rhbvCAtS9Qa_BXjO5AojyvM-CBKe8mPeKKkkpGYpXzfCl1LLqqCtktsc50psm_FYaK7OZFJLcZ-Vg72M2bfgxwr7XL7jMzfiFaa1A7kPVGInQj1h2rQ9jMnPi4_lMV99GeZc7r-orZRznR5JdBxm5mB4Dofkb7vRCyEcB4RH2E-KpY9X7oSkShFefCYIHPnIQCBuJCa5dbQMbFN=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%231e3a5f'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EOJ%3C/text%3E%3C/svg%3E"
                 alt="Rhodora Gacutan" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t3.badge">엄마 선생님 🤍</div>
             </div>
@@ -228,7 +218,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUADUpTtsQkyGO040xtL1rhbvCAtS9Qa_BXjO5AojyvM-CBKe8mPeKKkkpGYpXzfCl1LLqqCtktsc50psm_FYaK7OZFJLcZ-Vg72M2bfgxwr7XL7jMzfiFaa1A7kPVGInQj1h2rQ9jMnPi4_lMV99GeZc7r-orZRznR5JdBxm5mB4Dofkb7vRCyEcB4RH2E-KpY9X7oSkShFefCYIHPnIQCBuJCa5dbQMbFN=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%231e3a5f'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EOJ%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Teacher Odjie</h3>
@@ -257,7 +247,7 @@
         <div class="flip-inner w-full h-full">
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBngGeLkwn-R9umkvoEiO_vI3UxVsJJlZ9Wo-PIBxYNu3ghPtSkX6R3zMU3yHSqOUN-JqFTUlqA-kPxk41QPTZBUdg_wqGDL05Z-Ct7mkLPppgRKt1Rq-bqYS6wzj9hZBmOx7T-o7G0H9keHk6xI8vSZIwZNjWjhfsrBBTuBkmudfGM1mpZb8z9Q2_fmVmdY5WlgfRjU3_53jnFGPjA8-KPgUvG=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%234a2d6b'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EAA%3C/text%3E%3C/svg%3E"
                 alt="Ailene R. Arevalo" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t4.badge">해외 교육 경험</div>
             </div>
@@ -276,7 +266,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBngGeLkwn-R9umkvoEiO_vI3UxVsJJlZ9Wo-PIBxYNu3ghPtSkX6R3zMU3yHSqOUN-JqFTUlqA-kPxk41QPTZBUdg_wqGDL05Z-Ct7mkLPppgRKt1Rq-bqYS6wzj9hZBmOx7T-o7G0H9keHk6xI8vSZIwZNjWjhfsrBBTuBkmudfGM1mpZb8z9Q2_fmVmdY5WlgfRjU3_53jnFGPjA8-KPgUvG=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%234a2d6b'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EAA%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Ailene R. Arevalo</h3>
@@ -311,7 +301,7 @@
         <div class="flip-inner w-full h-full">
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD-fluf7qIyje2mKaUe-EYPnzbJsGWkLo7mrvkfx2XaXGS1KTmpfo1ALd2ZZ-SWIcwFHgcdGqyzL1-WOPKITO6jpuGcGMk6p0UvG7_seekup-a1v2V1BCX9fMBQRmE7AZA38xxGH8v5RQMq0ToyQg56sjOH39_FYbwMn5Y9VtHc4KBiag5uRuB71kv6SXw-eKTrwibYPCT74TmSjfPlSrZi4W2-pgoZMKPhDXA=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%238b2500'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EMC%3C/text%3E%3C/svg%3E"
                 alt="Maricel Cosio Concepcion" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t5.badge">법학박사 · 면허 교사</div>
             </div>
@@ -331,7 +321,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD-fluf7qIyje2mKaUe-EYPnzbJsGWkLo7mrvkfx2XaXGS1KTmpfo1ALd2ZZ-SWIcwFHgcdGqyzL1-WOPKITO6jpuGcGMk6p0UvG7_seekup-a1v2V1BCX9fMBQRmE7AZA38xxGH8v5RQMq0ToyQg56sjOH39_FYbwMn5Y9VtHc4KBiag5uRuB71kv6SXw-eKTrwibYPCT74TmSjfPlSrZi4W2-pgoZMKPhDXA=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%238b2500'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3EMC%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Maricel Cosio Concepcion</h3>
@@ -362,7 +352,7 @@
         <div class="flip-inner w-full h-full">
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCqM7oYr634MJn_hQTnvylKZEGt_SESntME5t_K8b6SFZdEGTeEffcVIr9ufJ4B48bI36IjkQHVK23e1-2UZCmMGsxpO6Kh2VnWELFoULj9V_jzAbdCRRrM_rS3J1C98TOcbd-bQl9p3rEoGWO7u4YS6JrlV_j1LX5Vdg9kyb8ycoSgAwGy717szU22wqmJKQBJm240MEGnlA3lpCHZOoLdszY1wVUCWfgaOTY=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23121212'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='%23ffcd4a' font-family='Arial,sans-serif' font-weight='bold'%3EKC%3C/text%3E%3C/svg%3E"
                 alt="Katherine Joy E. Cruz" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#121212] text-[#ffdf97] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t6.badge">🏆 헤드 티처</div>
             </div>
@@ -381,7 +371,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCqM7oYr634MJn_hQTnvylKZEGt_SESntME5t_K8b6SFZdEGTeEffcVIr9ufJ4B48bI36IjkQHVK23e1-2UZCmMGsxpO6Kh2VnWELFoULj9V_jzAbdCRRrM_rS3J1C98TOcbd-bQl9p3rEoGWO7u4YS6JrlV_j1LX5Vdg9kyb8ycoSgAwGy717szU22wqmJKQBJm240MEGnlA3lpCHZOoLdszY1wVUCWfgaOTY=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23121212'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='%23ffcd4a' font-family='Arial,sans-serif' font-weight='bold'%3EKC%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Katherine Joy E. Cruz</h3>
@@ -413,7 +403,7 @@
         <div class="flip-inner w-full h-full">
           <div class="flip-front bg-white rounded-[2rem] shadow-card overflow-hidden h-full flex flex-col">
             <div class="relative h-72 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBQEbY49aRsHZ3ishExD7xCCVYCmrR4Fo6icUZnnvfLCaLd3gR5S3THBHTTiCOypjx2WSX6t3DD6WQSiDePv3bHPRd4gemlz-gz3v75tb65RgxDQL6fjXIkRAiFQZSNEZEe4TTZ_WQ1vr_JHsGABz4h-7lkqREWlYvA7_SJKus4KglJJhF3K4Vwa4emZrqp5gpt-Ibk-uPTh_Eg93SSG4WQHt1YVM9I6PqmcD8=w1280"
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%231a4a5f'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3ELG%3C/text%3E%3C/svg%3E"
                 alt="Len D. Grimalt" class="w-full h-full object-cover">
               <div class="absolute bottom-3 left-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1 rounded-full" data-i18n="tp.t7.badge">온라인 ESL 17년</div>
             </div>
@@ -432,7 +422,7 @@
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
             <div class="flex items-center gap-3 mb-5">
               <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBQEbY49aRsHZ3ishExD7xCCVYCmrR4Fo6icUZnnvfLCaLd3gR5S3THBHTTiCOypjx2WSX6t3DD6WQSiDePv3bHPRd4gemlz-gz3v75tb65RgxDQL6fjXIkRAiFQZSNEZEe4TTZ_WQ1vr_JHsGABz4h-7lkqREWlYvA7_SJKus4KglJJhF3K4Vwa4emZrqp5gpt-Ibk-uPTh_Eg93SSG4WQHt1YVM9I6PqmcD8=w1280" class="w-full h-full object-cover" alt="">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%231a4a5f'/%3E%3Ctext x='100' y='130' font-size='80' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'%3ELG%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
               </div>
               <div>
                 <h3 class="text-base font-bold text-[#fbf9f8]">Len D. Grimalt</h3>
@@ -493,7 +483,7 @@
       <h5 class="text-xs font-bold tracking-widest uppercase mb-4" data-i18n="footer.links">바로가기</h5>
       <div class="grid grid-cols-2 gap-2">
         <a href="index.html"      class="text-sm text-[#636262] hover:text-[#775a00]" data-i18n="nav.home">홈</a>
-      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
+        <a href="videos.html"     class="text-sm text-[#636262] hover:text-[#775a00]" data-i18n="nav.videos">소개 영상</a>
         <a href="books.html"      class="text-sm text-[#636262] hover:text-[#775a00]" data-i18n="nav.books">대표 교재</a>
         <a href="usemeet.html"    class="text-sm text-[#636262] hover:text-[#775a00]" data-i18n="nav.guide">이용 가이드</a>
       </div>
