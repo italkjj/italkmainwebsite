@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITALK | 8년째 사랑받는 화상영어</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="stylesheet" href="shared.css">
+<script src="shared-config.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<style>
+  #trial-modal { display:none; opacity:0; transition:opacity .2s ease; }
+  #trial-modal.show { display:flex; opacity:1; }
+  #modal-box { transform:translateY(20px); transition:transform .25s ease; }
+  #trial-modal.show #modal-box { transform:translateY(0); }
+  #toast { transition:opacity .3s ease,transform .3s ease; opacity:0; transform:translateY(20px); pointer-events:none; }
+  #toast.show { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .goal-chip.selected { border-color:#775a00; color:#775a00; background:rgba(255,205,74,.12); }
+</style>
+</head>
+<body class="bg-[#fbf9f8] text-[#1b1c1c] overflow-x-hidden">
+
+<!-- NAV -->
+<nav class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-[#d2c5ae]/30">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between h-20">
+    <a href="index.html" class="flex items-center" aria-label="ITALK 홈"><img src="assets/logo.png" alt="ITALK" class="h-9 md:h-10 w-auto"></a>
+    <div class="hidden md:flex items-center gap-5">
+      <a href="index.html"        class="nav-link text-[#775a00] border-b-2 border-[#775a00] pb-1 font-bold text-sm tracking-widest uppercase" data-i18n="nav.home">홈</a>
+      <a href="teachers.html"     class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.teachers">선생님 소개</a>
+      <a href="videos.html"       class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
+      <a href="classvideo.html"   class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.classvideo">수업 영상</a>
+      <a href="books.html"        class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.books">대표 교재</a>
+      <a href="usemeet.html"      class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.guide">이용 가이드</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="hidden md:flex items-center gap-0.5 border border-[#d2c5ae]/50 rounded-lg p-0.5">
+        <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      </div>
+      <button class="trial-btn hidden lg:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+      <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-[#efeded] transition-colors">
+        <span class="material-symbols-outlined text-[#1b1c1c]" id="hamburger-icon">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-white border-t border-[#d2c5ae]/20">
+    <div class="flex flex-col px-4 py-3 gap-1">
+      <a href="index.html"        class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.home">홈</a>
+      <a href="teachers.html"     class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.teachers">선생님 소개</a>
+      <a href="videos.html"       class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.videos">소개 영상</a>
+      <a href="classvideo.html"   class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.classvideo">수업 영상</a>
+      <a href="books.html"        class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.books">대표 교재</a>
+      <a href="usemeet.html"      class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.guide">이용 가이드</a>
+      <div class="flex items-center gap-1 px-2 py-2 mt-1">
+        <span class="text-xs text-[#5f5e5e] mr-1">Language:</span>
+        <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      </div>
+      <button class="trial-btn mt-1 bg-[#ffcd4a] text-[#735700] py-3 rounded-xl font-bold text-sm active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="relative overflow-hidden pt-20 pb-32">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 items-center gap-8">
+    <div class="lg:col-span-7 z-10 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ffcd4a]/20 rounded-full mb-6">
+        <span class="material-symbols-outlined text-[#775a00] text-[16px]" style="font-variation-settings:'FILL' 1;">star</span>
+        <span class="text-[#775a00] font-bold text-xs tracking-widest uppercase" data-i18n="hero.badge">8년의 신뢰</span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-[#1b1c1c] mb-6 leading-tight tracking-tight">
+        <span data-i18n="hero.h1.line1">8년째 사랑받는</span><br>
+        <span class="text-[#775a00]" data-i18n="hero.h1.line2">아이톡 화상영어</span>
+      </h1>
+      <p class="text-lg text-[#5f5e5e] max-w-xl mb-10 leading-relaxed" data-i18n="hero.p">
+        원어민 선생님과 1:1 맞춤 수업으로 영어를 완성하세요.
+        말하기·듣기·읽기를 아우르는 개인 맞춤형 커리큘럼으로 성장을 경험합니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button class="trial-btn bg-[#ffcd4a] text-[#735700] px-10 py-4 rounded-xl font-bold text-xl shadow-card hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group">
+          <span data-i18n="hero.btn1">무료 체험 시작하기</span>
+          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </button>
+        <a href="teachers.html" class="border-2 border-[#1b1c1c] text-[#1b1c1c] px-10 py-4 rounded-xl font-bold text-xl hover:bg-[#1b1c1c]/5 transition-colors flex items-center justify-center" data-i18n="hero.btn2">
+          선생님 만나보기
+        </a>
+      </div>
+      <!-- Stats -->
+      <div class="flex flex-wrap gap-3 mt-10">
+        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-card">
+          <span class="material-symbols-outlined text-[#775a00] text-base" style="font-variation-settings:'FILL' 1;">groups</span>
+          <span class="text-sm font-semibold"><span data-i18n="hero.stat.students">수강생</span> <span class="text-[#775a00]" id="cnt-students">0</span><span data-i18n="hero.stat.students.suffix">명+</span></span>
+        </div>
+        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-card">
+          <span class="material-symbols-outlined text-[#775a00] text-base" style="font-variation-settings:'FILL' 1;">schedule</span>
+          <span class="text-sm font-semibold"><span data-i18n="hero.stat.hours">누적 수업</span> <span class="text-[#775a00]" id="cnt-hours">0</span><span data-i18n="hero.stat.hours.suffix">시간+</span></span>
+        </div>
+        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-card">
+          <span class="material-symbols-outlined text-[#775a00] text-base" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="text-sm font-semibold" data-i18n="hero.stat.rating">평균 평점 4.9 / 5</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-card">
+          <span class="material-symbols-outlined text-[#775a00] text-base" style="font-variation-settings:'FILL' 1;">emoji_events</span>
+          <span class="text-sm font-semibold" data-i18n="hero.stat.since">2018년부터 운영</span>
+        </div>
+      </div>
+    </div>
+    <!-- Hero image / teacher avatars -->
+    <div class="lg:col-span-5 relative mt-12 lg:mt-0 reveal">
+      <div class="relative z-10 rounded-3xl overflow-hidden shadow-card bg-white p-2">
+        <div class="bg-gradient-to-br from-[#ffcd4a]/30 to-[#ffdf97]/20 rounded-2xl p-8 flex flex-col items-center">
+          <p class="text-sm font-bold text-[#775a00] tracking-widest uppercase mb-6" data-i18n="hero.teachers.label">아이톡 선생님들</p>
+          <div class="grid grid-cols-4 gap-3 mb-6">
+            <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBdxUWYJjfHcjJ0EkP0Snl-WSW51Paj9-wHB9PofCVNCPI9GSIrMlPONY0Z3aclJcVa7vkRdMVlOqBw6lJaXem3D5LIEr5dJy4g9Ps08Z2dTPlpLR9bFXM0zE3B6Mt5zw_lHFKG9W99BHx_olYWuLQLvvvhsahLVBHBESJJr1_HpfEkxGLZjPXImMz5P0tm8MbSLpOAEI0s7yJwgx9HK8EW3TIohQWzbTrK5pk=w1280" alt="Bernadette" class="w-full aspect-square object-cover rounded-2xl">
+            <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUADUpTtsQkyGO040xtL1rhbvCAtS9Qa_BXjO5AojyvM-CBKe8mPeKKkkpGYpXzfCl1LLqqCtktsc50psm_FYaK7OZFJLcZ-Vg72M2bfgxwr7XL7jMzfiFaa1A7kPVGInQj1h2rQ9jMnPi4_lMV99GeZc7r-orZRznR5JdBxm5mB4Dofkb7vRCyEcB4RH2E-KpY9X7oSkShFefCYIHPnIQCBuJCa5dbQMbFN=w1280" alt="Rhodora" class="w-full aspect-square object-cover rounded-2xl">
+            <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCqM7oYr634MJn_hQTnvylKZEGt_SESntME5t_K8b6SFZdEGTeEffcVIr9ufJ4B48bI36IjkQHVK23e1-2UZCmMGsxpO6Kh2VnWELFoULj9V_jzAbdCRRrM_rS3J1C98TOcbd-bQl9p3rEoGWO7u4YS6JrlV_j1LX5Vdg9kyb8ycoSgAwGy717szU22wqmJKQBJm240MEGnlA3lpCHZOoLdszY1wVUCWfgaOTY=w1280" alt="Katherine" class="w-full aspect-square object-cover rounded-2xl">
+            <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBQEbY49aRsHZ3ishExD7xCCVYCmrR4Fo6icUZnnvfLCaLd3gR5S3THBHTTiCOypjx2WSX6t3DD6WQSiDePv3bHPRd4gemlz-gz3v75tb65RgxDQL6fjXIkRAiFQZSNEZEe4TTZ_WQ1vr_JHsGABz4h-7lkqREWlYvA7_SJKus4KglJJhF3K4Vwa4emZrqp5gpt-Ibk-uPTh_Eg93SSG4WQHt1YVM9I6PqmcD8=w1280" alt="Len" class="w-full aspect-square object-cover rounded-2xl">
+          </div>
+          <div class="text-center">
+            <p class="font-bold text-[#1b1c1c]" data-i18n="hero.teachers.count">7명의 전문 원어민 강사</p>
+            <p class="text-sm text-[#5f5e5e] mt-1" data-i18n="hero.teachers.sub">평균 경력 15년 이상의 검증된 선생님</p>
+          </div>
+        </div>
+      </div>
+      <!-- Floating badge -->
+      <div class="absolute -bottom-5 -left-4 bg-white rounded-2xl px-4 py-3 shadow-card flex items-center gap-3 z-20">
+        <div class="w-10 h-10 bg-[#ffcd4a]/20 rounded-full flex items-center justify-center">
+          <span class="material-symbols-outlined text-[#775a00] text-xl" style="font-variation-settings:'FILL' 1;">trending_up</span>
+        </div>
+        <div>
+          <p class="text-xs text-[#5f5e5e] font-medium" data-i18n="hero.satisfaction.label">수강생 만족도</p>
+          <p class="text-base font-bold text-[#1b1c1c]">98.3%</p>
+        </div>
+      </div>
+      <div class="absolute -top-10 -right-10 w-64 h-64 bg-[#ffcd4a]/20 rounded-full blur-3xl -z-10"></div>
+      <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-[#e2dfde]/50 rounded-full blur-2xl -z-10"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES BENTO -->
+<section class="bg-[#f5f3f3] py-28">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="text-center mb-16 reveal">
+      <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-3" data-i18n="feat.badge">왜 아이톡인가요?</p>
+      <h2 class="text-4xl font-bold text-[#1b1c1c] mb-4" data-i18n="feat.h2">빛나는 학습의 경험</h2>
+      <p class="text-base text-[#5f5e5e]" data-i18n="feat.p">수많은 학생들이 영어 마스터를 위해 아이톡을 선택하는 이유입니다.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+      <!-- Big card -->
+      <div class="md:col-span-2 bg-white p-10 rounded-[2rem] shadow-card border border-white hover:border-[#775a00]/20 hover:-translate-y-1 transition-all flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-[#775a00] text-3xl">verified</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3" data-i18n="feat.c1.h3">8년의 검증된 노하우</h3>
+          <p class="text-base text-[#5f5e5e] max-w-md" data-i18n="feat.c1.p">2018년부터 시작된 아이톡은 수천 명의 한국 학생들과 함께 성장해왔습니다. 긴 시간이 증명하는 신뢰와 품질을 경험하세요.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="bg-[#ffcd4a]/15 text-[#735700] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider" data-i18n="feat.c1.tag1">2018년 창립</span>
+          <span class="bg-[#ffcd4a]/15 text-[#735700] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider" data-i18n="feat.c1.tag2">검증된 방식</span>
+          <span class="bg-[#ffcd4a]/15 text-[#735700] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider" data-i18n="feat.c1.tag3">지속적 성장</span>
+        </div>
+      </div>
+      <!-- Dark card -->
+      <div class="bg-[#121212] text-white p-10 rounded-[2rem] shadow-card flex flex-col justify-between relative overflow-hidden hover:-translate-y-1 transition-all">
+        <div class="z-10">
+          <span class="material-symbols-outlined text-[#ffdf97] text-4xl mb-6">headset_mic</span>
+          <h3 class="text-2xl font-bold mb-3 text-[#fbf9f8]" data-i18n="feat.c2.h3">원어민 1:1 맞춤 수업</h3>
+          <p class="text-base text-[#c4c7ca]" data-i18n="feat.c2.p">전 세계 학습자와 함께 수업하는 숙련된 원어민 강사와 단 둘이 집중 수업. 첫 수업은 무료입니다.</p>
+        </div>
+        <div class="z-10 mt-8 flex -space-x-3">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBdxUWYJjfHcjJ0EkP0Snl-WSW51Paj9-wHB9PofCVNCPI9GSIrMlPONY0Z3aclJcVa7vkRdMVlOqBw6lJaXem3D5LIEr5dJy4g9Ps08Z2dTPlpLR9bFXM0zE3B6Mt5zw_lHFKG9W99BHx_olYWuLQLvvvhsahLVBHBESJJr1_HpfEkxGLZjPXImMz5P0tm8MbSLpOAEI0s7yJwgx9HK8EW3TIohQWzbTrK5pk=w1280" class="w-10 h-10 rounded-full border-2 border-[#121212] object-cover" alt="">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCqM7oYr634MJn_hQTnvylKZEGt_SESntME5t_K8b6SFZdEGTeEffcVIr9ufJ4B48bI36IjkQHVK23e1-2UZCmMGsxpO6Kh2VnWELFoULj9V_jzAbdCRRrM_rS3J1C98TOcbd-bQl9p3rEoGWO7u4YS6JrlV_j1LX5Vdg9kyb8ycoSgAwGy717szU22wqmJKQBJm240MEGnlA3lpCHZOoLdszY1wVUCWfgaOTY=w1280" class="w-10 h-10 rounded-full border-2 border-[#121212] object-cover" alt="">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBngGeLkwn-R9umkvoEiO_vI3UxVsJJlZ9Wo-PIBxYNu3ghPtSkX6R3zMU3yHSqOUN-JqFTUlqA-kPxk41QPTZBUdg_wqGDL05Z-Ct7mkLPppgRKt1Rq-bqYS6wzj9hZBmOx7T-o7G0H9keHk6xI8vSZIwZNjWjhfsrBBTuBkmudfGM1mpZb8z9Q2_fmVmdY5WlgfRjU3_53jnFGPjA8-KPgUvG=w1280" class="w-10 h-10 rounded-full border-2 border-[#121212] object-cover" alt="">
+          <div class="w-10 h-10 rounded-full border-2 border-[#121212] bg-[#ffcd4a] flex items-center justify-center text-xs font-bold text-[#735700]">+4</div>
+        </div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#775a00]/20 rounded-full blur-3xl"></div>
+      </div>
+      <!-- Small cards -->
+      <div class="bg-white p-8 rounded-[2rem] shadow-card border border-white hover:border-[#775a00]/20 hover:-translate-y-1 transition-all flex flex-col">
+        <span class="material-symbols-outlined text-[#775a00] text-3xl mb-4">edit_note</span>
+        <h3 class="text-xl font-bold mb-2" data-i18n="feat.c3.h3">개별 맞춤 커리큘럼</h3>
+        <p class="text-base text-[#5f5e5e]" data-i18n="feat.c3.p">비즈니스 영어, 시험 대비, 일상 회화까지 나만을 위한 학습 경로를 설계합니다.</p>
+      </div>
+      <div class="bg-white p-8 rounded-[2rem] shadow-card border border-white hover:border-[#775a00]/20 hover:-translate-y-1 transition-all flex flex-col">
+        <span class="material-symbols-outlined text-[#775a00] text-3xl mb-4">menu_book</span>
+        <h3 class="text-xl font-bold mb-2" data-i18n="feat.c4.h3">실전 중심 교재</h3>
+        <p class="text-base text-[#5f5e5e]" data-i18n="feat.c4.p">최신 자료와 대표 교재를 활용해 실생활에서 바로 쓰는 영어를 배웁니다.</p>
+      </div>
+      <div class="bg-white p-8 rounded-[2rem] shadow-card border border-white hover:border-[#775a00]/20 hover:-translate-y-1 transition-all flex flex-col">
+        <span class="material-symbols-outlined text-[#775a00] text-3xl mb-4">rate_review</span>
+        <h3 class="text-xl font-bold mb-2" data-i18n="feat.c5.h3">즉각적인 피드백</h3>
+        <p class="text-base text-[#5f5e5e]" data-i18n="feat.c5.p">매 수업마다 발음·문법·표현에 대한 즉각적이고 상세한 피드백을 제공합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS PREVIEW -->
+<section class="py-28 bg-white">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-14 gap-4 reveal">
+      <div>
+        <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-3" data-i18n="tch.badge">우리 선생님들</p>
+        <h2 class="text-4xl font-bold text-[#1b1c1c]" data-i18n="tch.h2">검증된 원어민 강사진</h2>
+        <p class="text-base text-[#5f5e5e] mt-3" data-i18n="tch.p">평균 15년 이상의 교육 경력을 보유한 7명의 전문 원어민 강사</p>
+      </div>
+      <a href="teachers.html" class="flex items-center gap-2 text-[#775a00] font-bold text-sm hover:gap-3 transition-all">
+        <span data-i18n="tch.more">전체 선생님 보기</span> <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <a href="teachers.html" class="group text-center">
+        <div class="aspect-square rounded-2xl overflow-hidden mb-3 shadow-card">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBdxUWYJjfHcjJ0EkP0Snl-WSW51Paj9-wHB9PofCVNCPI9GSIrMlPONY0Z3aclJcVa7vkRdMVlOqBw6lJaXem3D5LIEr5dJy4g9Ps08Z2dTPlpLR9bFXM0zE3B6Mt5zw_lHFKG9W99BHx_olYWuLQLvvvhsahLVBHBESJJr1_HpfEkxGLZjPXImMz5P0tm8MbSLpOAEI0s7yJwgx9HK8EW3TIohQWzbTrK5pk=w1280" alt="Bernadette" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <p class="font-bold text-[#1b1c1c] text-sm">Bernadette</p>
+        <p class="text-xs text-[#5f5e5e]">경력 17년</p>
+      </a>
+      <a href="teachers.html" class="group text-center">
+        <div class="aspect-square rounded-2xl overflow-hidden mb-3 shadow-card">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUADUpTtsQkyGO040xtL1rhbvCAtS9Qa_BXjO5AojyvM-CBKe8mPeKKkkpGYpXzfCl1LLqqCtktsc50psm_FYaK7OZFJLcZ-Vg72M2bfgxwr7XL7jMzfiFaa1A7kPVGInQj1h2rQ9jMnPi4_lMV99GeZc7r-orZRznR5JdBxm5mB4Dofkb7vRCyEcB4RH2E-KpY9X7oSkShFefCYIHPnIQCBuJCa5dbQMbFN=w1280" alt="Rhodora" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <p class="font-bold text-[#1b1c1c] text-sm">Teacher Odjie</p>
+        <p class="text-xs text-[#5f5e5e]">경력 14년</p>
+      </a>
+      <a href="teachers.html" class="group text-center">
+        <div class="aspect-square rounded-2xl overflow-hidden mb-3 shadow-card">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCqM7oYr634MJn_hQTnvylKZEGt_SESntME5t_K8b6SFZdEGTeEffcVIr9ufJ4B48bI36IjkQHVK23e1-2UZCmMGsxpO6Kh2VnWELFoULj9V_jzAbdCRRrM_rS3J1C98TOcbd-bQl9p3rEoGWO7u4YS6JrlV_j1LX5Vdg9kyb8ycoSgAwGy717szU22wqmJKQBJm240MEGnlA3lpCHZOoLdszY1wVUCWfgaOTY=w1280" alt="Katherine" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <p class="font-bold text-[#1b1c1c] text-sm">Katherine</p>
+        <p class="text-xs text-[#5f5e5e]">헤드 티처</p>
+      </a>
+      <a href="teachers.html" class="group text-center">
+        <div class="aspect-square rounded-2xl overflow-hidden mb-3 shadow-card">
+          <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBngGeLkwn-R9umkvoEiO_vI3UxVsJJlZ9Wo-PIBxYNu3ghPtSkX6R3zMU3yHSqOUN-JqFTUlqA-kPxk41QPTZBUdg_wqGDL05Z-Ct7mkLPppgRKt1Rq-bqYS6wzj9hZBmOx7T-o7G0H9keHk6xI8vSZIwZNjWjhfsrBBTuBkmudfGM1mpZb8z9Q2_fmVmdY5WlgfRjU3_53jnFGPjA8-KPgUvG=w1280" alt="Ailene" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <p class="font-bold text-[#1b1c1c] text-sm">Ailene</p>
+        <p class="text-xs text-[#5f5e5e]">경력 10년+</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-28 bg-[#f5f3f3]">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="text-center mb-16 reveal">
+      <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-3">수강생 후기</p>
+      <h2 class="text-4xl font-bold text-[#1b1c1c] mb-4" data-i18n="rev.h2">직접 경험한 변화</h2>
+      <p class="text-base text-[#5f5e5e]" data-i18n="rev.p">아이톡과 함께 영어 자신감을 찾은 수강생들의 이야기</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+
+      <div class="bg-white rounded-[2rem] p-8 shadow-card flex flex-col gap-5 hover:-translate-y-1 transition-all">
+        <div class="flex gap-1">
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+        </div>
+        <p class="text-[#1b1c1c] leading-relaxed flex-1">"처음에는 영어로 말하는 게 너무 두려웠는데, Teacher Katherine 덕분에 이제 영어 회의에서도 자신 있게 발표할 수 있어요. 꼼꼼한 발음 교정이 정말 큰 도움이 됐습니다."</p>
+        <div class="flex items-center gap-3 pt-2 border-t border-[#f5f3f3]">
+          <div class="w-10 h-10 rounded-full bg-[#ffcd4a]/20 flex items-center justify-center font-bold text-[#775a00] text-sm">박</div>
+          <div>
+            <p class="font-bold text-sm text-[#1b1c1c]">박지연</p>
+            <p class="text-xs text-[#5f5e5e]">직장인 · 수강 8개월</p>
+          </div>
+          <span class="ml-auto bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold">비즈니스 영어</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-[2rem] p-8 shadow-card flex flex-col gap-5 hover:-translate-y-1 transition-all">
+        <div class="flex gap-1">
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+        </div>
+        <p class="text-[#1b1c1c] leading-relaxed flex-1">"IELTS 6.5를 목표로 시작했는데 7.0을 받았어요! Teacher Maria의 체계적인 피드백과 맞춤 교재 덕분에 목표를 훨씬 뛰어넘는 결과를 얻었습니다."</p>
+        <div class="flex items-center gap-3 pt-2 border-t border-[#f5f3f3]">
+          <div class="w-10 h-10 rounded-full bg-[#ffcd4a]/20 flex items-center justify-center font-bold text-[#775a00] text-sm">김</div>
+          <div>
+            <p class="font-bold text-sm text-[#1b1c1c]">김민준</p>
+            <p class="text-xs text-[#5f5e5e]">대학생 · 수강 6개월</p>
+          </div>
+          <span class="ml-auto bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold">시험 대비</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-[2rem] p-8 shadow-card flex flex-col gap-5 hover:-translate-y-1 transition-all">
+        <div class="flex gap-1">
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-[#ffcd4a] text-xl" style="font-variation-settings:'FILL' 1;">star</span>
+        </div>
+        <p class="text-[#1b1c1c] leading-relaxed flex-1">"30분이라는 짧은 수업 시간이 부담 없어서 좋아요. Teacher Odjie는 정말 따뜻한 분이라 영어가 무서웠던 제가 이제는 매일 수업이 기다려져요."</p>
+        <div class="flex items-center gap-3 pt-2 border-t border-[#f5f3f3]">
+          <div class="w-10 h-10 rounded-full bg-[#ffcd4a]/20 flex items-center justify-center font-bold text-[#775a00] text-sm">이</div>
+          <div>
+            <p class="font-bold text-sm text-[#1b1c1c]">이서현</p>
+            <p class="text-xs text-[#5f5e5e]">주부 · 수강 4개월</p>
+          </div>
+          <span class="ml-auto bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold">일상 회화</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- Rating summary -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6 reveal">
+      <div class="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-card">
+        <span class="text-4xl font-extrabold text-[#775a00]">4.9</span>
+        <div>
+          <div class="flex gap-0.5">
+            <span class="material-symbols-outlined text-[#ffcd4a] text-base" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[#ffcd4a] text-base" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[#ffcd4a] text-base" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[#ffcd4a] text-base" style="font-variation-settings:'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-[#ffcd4a] text-base" style="font-variation-settings:'FILL' 1;">star</span>
+          </div>
+          <p class="text-xs text-[#5f5e5e] mt-0.5">1,200+ 수강생 평균</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-card">
+        <span class="material-symbols-outlined text-[#775a00] text-3xl" style="font-variation-settings:'FILL' 1;">thumb_up</span>
+        <div>
+          <p class="font-bold text-[#1b1c1c]">98.3% 만족도</p>
+          <p class="text-xs text-[#5f5e5e]">재수강 의향 설문 기준</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-28 bg-white">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="text-center mb-16 reveal">
+      <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-3" data-i18n="how.badge">시작하는 방법</p>
+      <h2 class="text-4xl font-bold text-[#1b1c1c] mb-4" data-i18n="how.h2">영어 정복을 향한 여정</h2>
+      <p class="text-base text-[#5f5e5e]" data-i18n="how.p">자신감을 찾아주는 체계적인 4단계 프로세스</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative reveal">
+      <div class="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-[#d2c5ae]/40 z-0"></div>
+      <div class="bg-[#f5f3f3] rounded-[1.5rem] p-8 shadow-card relative z-10 group hover:-translate-y-1 transition-all">
+        <div class="w-14 h-14 bg-[#775a00] text-white rounded-2xl flex items-center justify-center font-bold text-xl mb-6 shadow-card">01</div>
+        <h4 class="font-bold text-lg mb-2" data-i18n="how.s1.h4">무료 체험 신청</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="how.s1.p">현재 레벨을 진단하는 30분 무료 체험 수업을 예약하세요.</p>
+      </div>
+      <div class="bg-[#f5f3f3] rounded-[1.5rem] p-8 shadow-card relative z-10 group hover:-translate-y-1 transition-all">
+        <div class="w-14 h-14 bg-[#e9e8e7] text-[#4e4634] rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:bg-[#775a00] group-hover:text-white transition-colors">02</div>
+        <h4 class="font-bold text-lg mb-2" data-i18n="how.s2.h4">강사 매칭</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="how.s2.p">학습 목표와 스타일에 맞는 최적의 원어민 강사와 연결됩니다.</p>
+      </div>
+      <div class="bg-[#f5f3f3] rounded-[1.5rem] p-8 shadow-card relative z-10 group hover:-translate-y-1 transition-all">
+        <div class="w-14 h-14 bg-[#e9e8e7] text-[#4e4634] rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:bg-[#775a00] group-hover:text-white transition-colors">03</div>
+        <h4 class="font-bold text-lg mb-2" data-i18n="how.s3.h4">맞춤 커리큘럼</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="how.s3.p">나의 목표와 관심사에 맞춘 학습 경로와 교재를 제안받습니다.</p>
+      </div>
+      <div class="bg-[#f5f3f3] rounded-[1.5rem] p-8 shadow-card relative z-10 group hover:-translate-y-1 transition-all">
+        <div class="w-14 h-14 bg-[#e9e8e7] text-[#4e4634] rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:bg-[#775a00] group-hover:text-white transition-colors">04</div>
+        <h4 class="font-bold text-lg mb-2" data-i18n="how.s4.h4">매일 30분 수업</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="how.s4.p">Google Meet로 매일 30분, 꾸준히 수업하며 실력 향상을 경험하세요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE MEET BANNER -->
+<section class="py-20 bg-[#f5f3f3]">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 reveal shadow-card">
+      <div class="w-20 h-20 bg-[#f5f3f3] rounded-2xl flex items-center justify-center shadow-card flex-shrink-0">
+        <span class="material-symbols-outlined text-[#775a00] text-4xl">videocam</span>
+      </div>
+      <div class="flex-1">
+        <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-2" data-i18n="meet.badge">수업 플랫폼</p>
+        <h3 class="text-2xl font-bold text-[#1b1c1c] mb-2" data-i18n="meet.h3">Google Meet로 수업합니다</h3>
+        <p class="text-base text-[#5f5e5e]" data-i18n="meet.p">별도 설치 없이 브라우저에서 바로 시작할 수 있습니다. 수업 링크는 선생님이 개별 전송해 드립니다.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="usemeet.html" class="bg-[#775a00] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#5a4300] transition-colors text-center" data-i18n="meet.btn1">이용 방법 보기</a>
+        <a href="https://meet.google.com" target="_blank" rel="noopener" class="border-2 border-[#775a00] text-[#775a00] px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#775a00]/5 transition-colors text-center" data-i18n="meet.btn2">Google Meet 접속</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-28">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="bg-[#121212] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden reveal">
+      <div class="relative z-10">
+        <p class="text-xs font-bold tracking-widest uppercase text-[#ffdf97] mb-4" data-i18n="cta.badge">지금 시작하세요</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[#fbf9f8] mb-6 tracking-tight" data-i18n="cta.h2">영어를 바꿀 준비가 되셨나요?</h2>
+        <p class="text-lg text-[#c4c7ca] max-w-2xl mx-auto mb-10" data-i18n="cta.p">8년 넘게 아이톡과 함께 성장해온 수천 명의 학습자들과 함께하세요. 첫 수업은 완전 무료입니다.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="trial-btn bg-[#ffcd4a] text-[#121212] px-12 py-5 rounded-full font-extrabold text-xl hover:bg-[#ffdf97] transition-all active:scale-95 shadow-card" data-i18n="cta.btn1">
+            무료 체험 수업 신청하기
+          </button>
+          <a href="teachers.html" class="border-2 border-white/30 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2" data-i18n="cta.btn2">
+            선생님 먼저 보기
+          </a>
+        </div>
+      </div>
+      <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+        <div class="grid grid-cols-4 gap-4 transform rotate-12 -translate-y-20">
+          <div class="h-64 bg-[#ffdf97] rounded-full"></div>
+          <div class="h-96 bg-[#ffdf97] rounded-full translate-y-12"></div>
+          <div class="h-64 bg-[#ffdf97] rounded-full"></div>
+          <div class="h-80 bg-[#ffdf97] rounded-full -translate-y-8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#e4e2e2] text-[#1b1c1c]">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div>
+      <div class="text-2xl font-extrabold text-[#775a00] mb-4">ITALK</div>
+      <p class="text-sm text-[#636262] leading-relaxed">1:1 화상 영어와 8년의 신뢰로<br>영어 교육의 가치를 높입니다.</p>
+    </div>
+    <div>
+      <h5 class="text-xs font-bold tracking-widest uppercase mb-5">바로가기</h5>
+      <ul class="space-y-3">
+        <li><a href="teachers.html"  class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">선생님 소개</a></li>
+        <li><a href="videos.html"    class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">소개 영상</a></li>
+        <li><a href="classvideo.html" class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">수업 영상</a></li>
+        <li><a href="books.html"     class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">대표 교재</a></li>
+        <li><a href="usemeet.html"   class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">Google Meet 이용 방법</a></li>
+      </ul>
+    </div>
+    <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <h5 class="text-xs font-bold tracking-widest uppercase mb-5">사업자 정보</h5>
+        <div class="space-y-2 text-sm text-[#636262]">
+          <p><span class="font-semibold text-[#1b1c1c]">대표자</span>  정찬미</p>
+          <p><span class="font-semibold text-[#1b1c1c]">사업자등록번호</span>  130-47-60022</p>
+          <p><span class="font-semibold text-[#1b1c1c]">전화</span>  010-9052-5935</p>
+          <p><span class="font-semibold text-[#1b1c1c]">이메일</span>  op@italk.ne.kr</p>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-xs font-bold tracking-widest uppercase mb-5">주소</h5>
+        <p class="text-sm text-[#636262] leading-relaxed">서울특별시 서초구<br>서초대로77길 9<br>누드죤빌딩 9층 902호</p>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-[#d2c5ae]/30 py-6">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-3">
+      <p class="text-xs text-[#636262]">© 2025 ITALK CO. LTD 모든 권리 보유</p>
+      <div class="flex gap-4">
+        <a href="https://meet.google.com" target="_blank" rel="noopener" class="text-xs text-[#636262] hover:text-[#775a00] transition-colors">Google Meet 접속</a>
+        <span class="text-[#d2c5ae]">|</span>
+        <a href="mailto:op@italk.ne.kr" class="text-xs text-[#636262] hover:text-[#775a00] transition-colors">이메일 문의</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TRIAL MODAL -->
+<div id="trial-modal" class="fixed inset-0 z-[100] items-center justify-center p-4 bg-[#121212]/60 backdrop-blur-sm" aria-modal="true" role="dialog">
+  <div id="modal-box" class="bg-white rounded-[2rem] w-full max-w-lg shadow-2xl overflow-hidden">
+    <div class="bg-[#ffcd4a]/25 px-8 pt-8 pb-6">
+      <div class="flex items-start justify-between">
+        <div>
+          <span class="text-xs font-bold tracking-widest uppercase text-[#775a00]" data-i18n="modal.badge">무료 체험 신청</span>
+          <h3 class="text-2xl font-bold text-[#1b1c1c] mt-1" data-i18n="modal.h3">첫 수업을 예약하세요</h3>
+          <p class="text-sm text-[#5f5e5e] mt-1" data-i18n="modal.sub">아래 정보를 입력하시면 24시간 내로 연락드립니다.</p>
+        </div>
+        <button id="modal-close" class="w-9 h-9 rounded-full bg-[#efeded] flex items-center justify-center hover:bg-[#e9e8e7] transition-colors flex-shrink-0 ml-4">
+          <span class="material-symbols-outlined text-[#5f5e5e] text-xl">close</span>
+        </button>
+      </div>
+    </div>
+    <form id="trial-form" name="무료체험신청" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="px-8 py-6 space-y-4" novalidate>
+      <input type="hidden" name="form-name" value="무료체험신청">
+      <p class="hidden"><input name="bot-field"></p>
+      <div>
+        <label class="block text-sm font-semibold text-[#1b1c1c] mb-1.5" for="f-name"><span data-i18n="modal.name">이름</span> <span class="text-[#ba1a1a]">*</span></label>
+        <input id="f-name" type="text" placeholder="홍길동" autocomplete="name" data-i18n-ph="modal.name.ph"
+          class="w-full border border-[#d2c5ae] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#775a00] focus:border-transparent">
+        <p class="err text-[#ba1a1a] text-xs mt-1 hidden">이름을 입력해 주세요.</p>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-[#1b1c1c] mb-1.5" for="f-phone"><span data-i18n="modal.phone">연락처</span> <span class="text-[#ba1a1a]">*</span></label>
+        <input id="f-phone" type="tel" placeholder="010-0000-0000" autocomplete="tel"
+          class="w-full border border-[#d2c5ae] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#775a00] focus:border-transparent">
+        <p class="err text-[#ba1a1a] text-xs mt-1 hidden">올바른 연락처를 입력해 주세요.</p>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-[#1b1c1c] mb-1.5" for="f-level"><span data-i18n="modal.level">현재 영어 수준</span> <span class="text-[#ba1a1a]">*</span></label>
+        <select id="f-level" class="w-full border border-[#d2c5ae] rounded-xl px-4 py-3 text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#775a00]">
+          <option value="" disabled selected data-i18n-opt="modal.level.ph">수준을 선택해 주세요</option>
+          <option value="beginner" data-i18n-opt="modal.level.1">입문 (Beginner)</option>
+          <option value="elementary" data-i18n-opt="modal.level.2">초급 (Elementary)</option>
+          <option value="intermediate" data-i18n-opt="modal.level.3">중급 (Intermediate)</option>
+          <option value="upper" data-i18n-opt="modal.level.4">중상급 (Upper-Intermediate)</option>
+          <option value="advanced" data-i18n-opt="modal.level.5">고급 (Advanced)</option>
+        </select>
+        <p class="err text-[#ba1a1a] text-xs mt-1 hidden">수준을 선택해 주세요.</p>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-[#1b1c1c] mb-2" data-i18n="modal.goals">학습 목표 (복수 선택 가능)</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" class="goal-chip border border-[#d2c5ae] rounded-xl px-3 py-2 text-sm text-[#1b1c1c] text-left hover:border-[#775a00] hover:text-[#775a00] transition-colors" data-i18n="modal.goal.biz">💼 비즈니스 영어</button>
+          <button type="button" class="goal-chip border border-[#d2c5ae] rounded-xl px-3 py-2 text-sm text-[#1b1c1c] text-left hover:border-[#775a00] hover:text-[#775a00] transition-colors" data-i18n="modal.goal.trv">✈️ 여행 영어</button>
+          <button type="button" class="goal-chip border border-[#d2c5ae] rounded-xl px-3 py-2 text-sm text-[#1b1c1c] text-left hover:border-[#775a00] hover:text-[#775a00] transition-colors" data-i18n="modal.goal.tst">📝 시험 대비</button>
+          <button type="button" class="goal-chip border border-[#d2c5ae] rounded-xl px-3 py-2 text-sm text-[#1b1c1c] text-left hover:border-[#775a00] hover:text-[#775a00] transition-colors" data-i18n="modal.goal.cvs">💬 일상 회화</button>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <input id="f-agree" type="checkbox" class="mt-0.5 w-4 h-4 rounded border-[#d2c5ae] accent-[#775a00] cursor-pointer">
+        <label for="f-agree" class="text-sm text-[#5f5e5e] cursor-pointer">
+          <span class="text-[#1b1c1c] font-medium" data-i18n="modal.agree">개인정보 수집·이용에 동의합니다.</span><br>
+          <span data-i18n="modal.agree.sub">체험 신청 처리 목적으로만 사용되며 제3자에게 제공되지 않습니다.</span>
+        </label>
+      </div>
+      <p id="agree-error" class="text-[#ba1a1a] text-xs hidden">개인정보 수집·이용에 동의해 주세요.</p>
+      <p id="submit-error" class="hidden text-[#ba1a1a] text-xs bg-[#ffdad6] rounded-lg px-4 py-3"></p>
+      <button type="submit" id="submit-btn" class="w-full bg-[#775a00] text-white py-4 rounded-xl font-bold text-base hover:bg-[#5a4300] active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+        <span id="submit-label" data-i18n="modal.submit">무료 체험 신청하기</span>
+        <span class="material-symbols-outlined text-xl" id="submit-icon">arrow_forward</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="fixed bottom-8 right-4 md:right-8 z-[200] bg-[#121212] text-[#fbf9f8] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 max-w-xs">
+  <span class="material-symbols-outlined text-[#ffdf97] text-2xl" style="font-variation-settings:'FILL' 1;">check_circle</span>
+  <div>
+    <p class="font-bold text-sm" data-i18n="toast.title">신청이 완료되었습니다!</p>
+    <p class="text-xs text-[#c4c7ca] mt-0.5" data-i18n="toast.sub">24시간 내로 연락드리겠습니다.</p>
+  </div>
+</div>
+
+<script src="image-fallback.js"></script>
+<script src="lang.js"></script>
+<script>
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const icon = document.getElementById('hamburger-icon');
+const menu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  const o = menu.classList.toggle('open');
+  icon.textContent = o ? 'close' : 'menu';
+});
+document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => { menu.classList.remove('open'); icon.textContent = 'menu'; }));
+
+// Reveal
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 }).observe(el);
+});
+
+// Counters
+function animCount(el, target, dur=1800) {
+  let start = null;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts-start)/dur, 1);
+    const ease = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.floor(ease * target).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    animCount(document.getElementById('cnt-students'), 12000);
+    animCount(document.getElementById('cnt-hours'), 85000);
+  }
+}, { threshold: 0.3 }).observe(document.getElementById('hero'));
+
+// Modal
+const modal = document.getElementById('trial-modal');
+function openModal() { modal.style.display='flex'; requestAnimationFrame(()=>modal.classList.add('show')); document.body.style.overflow='hidden'; }
+function closeModal() { modal.classList.remove('show'); setTimeout(()=>{ modal.style.display='none'; document.body.style.overflow=''; },200); }
+document.querySelectorAll('.trial-btn').forEach(b => b.addEventListener('click', openModal));
+document.getElementById('modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// Goal chips
+document.querySelectorAll('.goal-chip').forEach(c => c.addEventListener('click', () => c.classList.toggle('selected')));
+
+// Phone format
+document.getElementById('f-phone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'').slice(0,11);
+  if(v.length>=7) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
+  else if(v.length>=4) v = v.slice(0,3)+'-'+v.slice(3);
+  this.value = v;
+});
+
+// Form submit
+document.getElementById('trial-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  let ok = true;
+  const name = document.getElementById('f-name');
+  const nameErr = name.nextElementSibling;
+  if (!name.value.trim()) { nameErr.classList.remove('hidden'); name.classList.add('border-[#ba1a1a]'); ok=false; }
+  else { nameErr.classList.add('hidden'); name.classList.remove('border-[#ba1a1a]'); }
+
+  const phone = document.getElementById('f-phone');
+  const phoneErr = phone.nextElementSibling;
+  if (!/^\d{3}-\d{3,4}-\d{4}$/.test(phone.value.trim())) { phoneErr.classList.remove('hidden'); ok=false; }
+  else { phoneErr.classList.add('hidden'); }
+
+  const level = document.getElementById('f-level');
+  const levelErr = level.nextElementSibling;
+  if (!level.value) { levelErr.classList.remove('hidden'); ok=false; }
+  else { levelErr.classList.add('hidden'); }
+
+  const agree = document.getElementById('f-agree');
+  const agreeErr = document.getElementById('agree-error');
+  if (!agree.checked) { agreeErr.classList.remove('hidden'); ok=false; }
+  else { agreeErr.classList.add('hidden'); }
+
+  if (!ok) return;
+
+  const btn = document.getElementById('submit-btn');
+  document.getElementById('submit-label').textContent = '신청 중...';
+  document.getElementById('submit-icon').textContent = 'hourglass_empty';
+  btn.disabled = true;
+
+  const goals = [...document.querySelectorAll('.goal-chip.selected')]
+    .map(c => c.textContent.trim()).join(', ') || '미선택';
+
+  try {
+    const formData = new URLSearchParams({
+      'form-name': '무료체험신청',
+      '이름': name.value.trim(),
+      '연락처': phone.value.trim(),
+      '영어수준': level.value,
+      '학습목표': goals,
+    });
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+    });
+    if (!res.ok) throw new Error('서버 오류: ' + res.status);
+    closeModal();
+    document.getElementById('trial-form').reset();
+    document.querySelectorAll('.goal-chip').forEach(c => c.classList.remove('selected'));
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 5000);
+  } catch (err) {
+    console.error('Form submission error:', err);
+    const errBox = document.getElementById('submit-error');
+    if (errBox) { errBox.textContent = '제출 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화(010-9052-5935)로 문의해 주세요.'; errBox.classList.remove('hidden'); }
+  } finally {
+    btn.disabled = false;
+    document.getElementById('submit-label').textContent = '무료 체험 신청하기';
+    document.getElementById('submit-icon').textContent = 'arrow_forward';
+  }
+});
+</script>
+</body>
+</html>

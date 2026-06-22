@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Meet 이용 가이드 | ITALK 화상영어</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<style>
+  body { font-family: "Plus Jakarta Sans", sans-serif; }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  .shadow-card { box-shadow: 0 10px 30px rgba(33,33,33,0.07); }
+  #mobile-menu { max-height:0; overflow:hidden; transition:max-height .35s ease, opacity .25s ease; opacity:0; }
+  #mobile-menu.open { max-height:400px; opacity:1; }
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease,transform .65s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .step-line::before {
+    content:''; position:absolute; left:24px; top:56px; bottom:-32px;
+    width:2px; background:linear-gradient(to bottom, #ffcd4a, #ffcd4a80);
+  }
+  .step-line:last-child::before { display:none; }
+  /* Tab underline */
+  .tab-active { border-bottom:3px solid #775a00; color:#775a00; font-weight:700; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+  /* FAQ accordion */
+  .faq-body { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+  .faq-body.open { max-height:300px; }
+  .faq-chevron { transition:transform 0.25s; }
+  .faq-chevron.open { transform:rotate(180deg); }
+  .lang-btn { padding:3px 8px; border-radius:6px; font-size:11px; font-weight:700; color:#4e4634; transition:background .15s,color .15s; }
+  .lang-btn:hover { background:#f5f3f3; }
+  .lang-active { background:#ffcd4a !important; color:#735700 !important; }
+</style>
+</head>
+<body class="bg-[#fbf9f8] text-[#1b1c1c] overflow-x-hidden">
+
+<!-- NAV -->
+<nav class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-[#d2c5ae]/30">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between h-20">
+    <a href="index.html" class="flex items-center" aria-label="ITALK 홈"><img src="assets/logo.png" alt="ITALK" class="h-9 md:h-10 w-auto"></a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html"      class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.home">홈</a>
+      <a href="teachers.html"   class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.teachers">선생님 소개</a>
+      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
+      <a href="books.html"      class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.books">대표 교재</a>
+      <a href="usemeet.html"    class="text-[#775a00] border-b-2 border-[#775a00] pb-1 font-bold text-sm tracking-widest uppercase" data-i18n="nav.guide">이용 가이드</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <!-- Lang switcher -->
+      <div class="hidden md:flex items-center gap-0.5 border border-[#d2c5ae]/50 rounded-lg p-0.5">
+        <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      </div>
+      <a href="index.html" class="hidden lg:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</a>
+      <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-[#efeded]">
+        <span class="material-symbols-outlined text-[#1b1c1c]" id="hamburger-icon">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-white border-t border-[#d2c5ae]/20">
+    <div class="flex flex-col px-4 py-3 gap-1">
+      <a href="index.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.home">홈</a>
+      <a href="teachers.html"   class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.teachers">선생님 소개</a>
+      <a href="videos.html"     class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.videos">소개 영상</a>
+      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
+      <a href="books.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.books">대표 교재</a>
+      <a href="usemeet.html"    class="px-4 py-3 rounded-xl font-semibold text-[#775a00] bg-[#ffcd4a]/10" data-i18n="nav.guide">이용 가이드</a>
+      <!-- Mobile lang switcher -->
+      <div class="flex items-center gap-1 px-2 py-2 mt-1">
+        <span class="text-xs text-[#5f5e5e] mr-1">Language:</span>
+        <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="bg-white pt-20 pb-16 border-b border-[#d2c5ae]/20">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1 reveal">
+        <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-4" data-i18n="um.badge">수업 플랫폼 안내</p>
+        <h1 class="text-5xl font-extrabold text-[#1b1c1c] mb-5 tracking-tight leading-tight">Google Meet<br><span data-i18n="um.h1.sub">이용 방법</span></h1>
+        <p class="text-lg text-[#5f5e5e] mb-8 leading-relaxed" data-i18n="um.hero.p">아이톡은 스카이프에서 <strong class="text-[#1b1c1c]">Google Meet</strong>으로 전환하여 수업을 진행합니다.<br>별도 설치 없이 크롬 브라우저에서 바로 접속할 수 있습니다.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="https://meet.google.com" target="_blank" rel="noopener"
+            class="flex items-center gap-2 bg-[#ffcd4a] text-[#735700] px-6 py-3 rounded-xl font-bold hover:bg-[#ffdf97] transition-all">
+            <span class="material-symbols-outlined text-xl">videocam</span>
+            <span data-i18n="um.hero.btn1">Google Meet 바로가기</span>
+          </a>
+          <a href="index.html" class="flex items-center gap-2 border-2 border-[#775a00] text-[#775a00] px-6 py-3 rounded-xl font-bold hover:bg-[#775a00]/5 transition-all">
+            <span data-i18n="um.hero.btn2">무료 체험 신청</span>
+          </a>
+        </div>
+      </div>
+      <!-- Visual -->
+      <div class="flex-shrink-0 reveal">
+        <div class="w-64 h-64 bg-[#f5f3f3] rounded-3xl flex items-center justify-center shadow-card relative">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-white rounded-2xl shadow-card flex items-center justify-center mx-auto mb-4">
+              <svg viewBox="0 0 87.5 72" xmlns="http://www.w3.org/2000/svg" class="w-16 h-14">
+                <rect x="0" y="12" width="54" height="48" rx="8" ry="8" fill="white"/>
+                <path d="M8 12 h19 v24 h-19 a8 8 0 0 1 -8 -8 v-8 a8 8 0 0 1 8 -8z" fill="#4285F4"/>
+                <path d="M0 32 h27 v20 a8 8 0 0 1 -8 8 h-11 a8 8 0 0 1 -8 -8z" fill="#EA4335"/>
+                <path d="M27 12 h19 a8 8 0 0 1 8 8 v16 h-27z" fill="#FBBC04"/>
+                <path d="M27 36 h27 v16 a8 8 0 0 1 -8 8 h-19z" fill="#34A853"/>
+                <path d="M60 22 l27.5 -14 v56 l-27.5 -14 z" fill="#34A853"/>
+              </svg>
+            </div>
+            <p class="font-bold text-[#1b1c1c]">Google Meet</p>
+            <p class="text-sm text-[#5f5e5e]" data-i18n="um.hero.caption">화상 수업 플랫폼</p>
+          </div>
+          <div class="absolute -top-3 -right-3 bg-[#ffcd4a] text-[#735700] text-xs font-bold px-3 py-1.5 rounded-full shadow" data-i18n="um.hero.badge">무료 · 설치 불필요</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICE TABS -->
+<section class="py-16 bg-[#f5f3f3]">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl font-bold mb-2" data-i18n="um.device.h2">기기별 접속 방법</h2>
+      <p class="text-[#5f5e5e]" data-i18n="um.device.p">사용하는 기기를 선택해 확인하세요</p>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="flex gap-0 border-b border-[#d2c5ae]/40 mb-10 reveal overflow-x-auto">
+      <button onclick="switchTab('pc')" id="tab-pc" class="tab-active px-6 py-4 text-sm font-semibold border-b-[3px] border-[#775a00] text-[#775a00] whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-xl">computer</span> <span data-i18n="um.tab.pc">PC · 노트북</span>
+      </button>
+      <button onclick="switchTab('iphone')" id="tab-iphone" class="px-6 py-4 text-sm font-semibold border-b-[3px] border-transparent text-[#5f5e5e] hover:text-[#775a00] transition-colors whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-xl">phone_iphone</span> <span data-i18n="um.tab.ios">iPhone · iPad</span>
+      </button>
+      <button onclick="switchTab('android')" id="tab-android" class="px-6 py-4 text-sm font-semibold border-b-[3px] border-transparent text-[#5f5e5e] hover:text-[#775a00] transition-colors whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-xl">android</span> <span data-i18n="um.tab.and">갤럭시 · Android</span>
+      </button>
+    </div>
+
+    <!-- PC Panel -->
+    <div id="panel-pc" class="tab-panel active">
+      <div class="space-y-6">
+
+        <!-- Video guide -->
+        <div class="bg-white rounded-2xl p-6 shadow-card reveal">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-[#775a00]">smart_display</span> <span data-i18n="um.pc.video.h">영상으로 보는 접속 방법 (Windows · PC)</span></h3>
+          <div class="relative w-full rounded-xl overflow-hidden bg-black" style="aspect-ratio:16/9;">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/9DcbkWOBu58"
+              title="Windows PC에서 Google Meet 접속 방법" loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="relative step-line flex gap-6 reveal">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-[#775a00] text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-card z-10 relative">01</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 flex-1 shadow-card">
+            <h3 class="font-bold text-lg mb-2" data-i18n="um.pc.s1.h">수업 링크를 새 탭에 붙여넣기</h3>
+            <p class="text-[#5f5e5e] mb-4" data-i18n="um.pc.s1.p">선생님이 문자 또는 메시지로 전송한 Google Meet 링크를 복사한 후, 크롬 브라우저의 새 탭 주소창에 붙여넣고 <kbd class="bg-[#f5f3f3] border border-[#d2c5ae] px-2 py-0.5 rounded text-sm font-mono">Enter</kbd> 를 누릅니다.</p>
+            <div class="bg-[#ffcd4a]/10 border border-[#ffcd4a]/40 rounded-xl px-4 py-3 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#775a00] text-xl flex-shrink-0">lightbulb</span>
+              <p class="text-sm text-[#4e4634]" data-i18n="um.pc.s1.tip"><strong>권장 브라우저:</strong> 크롬(Chrome)을 사용하면 가장 원활하게 수업에 참여할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative step-line flex gap-6 reveal">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-[#775a00] text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-card z-10 relative">02</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 flex-1 shadow-card">
+            <h3 class="font-bold text-lg mb-2" data-i18n="um.pc.s2.h">카메라 · 마이크 권한 허용</h3>
+            <p class="text-[#5f5e5e] mb-4" data-i18n="um.pc.s2.p">"회의 참가자가 나를 볼 수 있게 하시겠습니까?" 또는 마이크·카메라 사용 팝업이 뜨면 <strong>허용</strong>을 클릭합니다.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="bg-[#dcfce7] rounded-xl p-4 flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#166534] text-xl mt-0.5" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <div>
+                  <p class="font-semibold text-[#166534] text-sm" data-i18n="um.pc.s2.allow">이 사이트를 사용하는 동안 허용</p>
+                  <p class="text-xs text-[#166534]/70 mt-1" data-i18n="um.pc.s2.allow.sub">매 수업마다 자동으로 권한이 유지됩니다.</p>
+                </div>
+              </div>
+              <div class="bg-[#fee2e2] rounded-xl p-4 flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#dc2626] text-xl mt-0.5" style="font-variation-settings:'FILL' 1;">cancel</span>
+                <div>
+                  <p class="font-semibold text-[#dc2626] text-sm" data-i18n="um.pc.s2.once">이번만 허용 (비추천)</p>
+                  <p class="text-xs text-[#dc2626]/70 mt-1" data-i18n="um.pc.s2.once.sub">매 수업 전 권한을 다시 승인해야 합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative step-line flex gap-6 reveal">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-[#775a00] text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-card z-10 relative">03</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 flex-1 shadow-card">
+            <h3 class="font-bold text-lg mb-2" data-i18n="um.pc.s3.h">이름 입력 후 참가 요청</h3>
+            <p class="text-[#5f5e5e] mb-4" data-i18n="um.pc.s3.p">"이름이 무엇인가요?" 입력창에 <strong>영문 이름</strong>을 입력한 후 <strong>"참가 요청"</strong> 버튼을 클릭합니다.</p>
+            <div class="bg-[#f5f3f3] rounded-xl p-4">
+              <p class="text-sm font-semibold text-[#1b1c1c] mb-2" data-i18n="um.pc.s3.ex.label">✏️ 이름 입력 예시</p>
+              <p class="text-sm text-[#5f5e5e]" data-i18n="um.pc.s3.ex.p">홍길동 → <strong>Gildong Hong</strong> 또는 수업 시작 전 선생님과 약속한 이름으로 입력하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative flex gap-6 reveal">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-[#775a00] text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-card">04</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 flex-1 shadow-card">
+            <h3 class="font-bold text-lg mb-2" data-i18n="um.pc.s4.h">수업 시작 대기</h3>
+            <p class="text-[#5f5e5e] mb-4" data-i18n="um.pc.s4.p">참가 요청 후 대기 화면이 표시됩니다. 선생님이 수업 시간에 맞춰 수락하면 자동으로 수업 화면으로 전환됩니다.</p>
+            <div class="bg-[#ffcd4a]/10 border border-[#ffcd4a]/40 rounded-xl px-4 py-3 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#775a00] text-xl">schedule</span>
+              <p class="text-sm text-[#4e4634]" data-i18n="um.pc.s4.tip">수업 시작 <strong>5분 전</strong>에 미리 접속해 두면 더욱 원활하게 시작할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- iPhone Panel -->
+    <div id="panel-iphone" class="tab-panel">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Video guide -->
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal md:col-span-2">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-[#775a00]">smart_display</span> <span data-i18n="um.ios.video.h">영상으로 보는 접속 방법 (iPhone · iPad)</span></h3>
+          <div class="relative mx-auto w-full rounded-xl overflow-hidden bg-black" style="aspect-ratio:9/16; max-width:300px;">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/HhMDK9aazJM"
+              title="iPhone에서 Google Meet 접속 방법" loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">download</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.ios.s1.h">① Google Meet 앱 설치</h3>
+          <p class="text-[#5f5e5e] mb-4" data-i18n="um.ios.s1.p">App Store에서 <strong>Google Meet</strong> 앱을 설치합니다. 이미 설치된 경우 최신 버전으로 업데이트하세요.</p>
+          <a href="https://apps.apple.com/app/google-meet/id1013231476" target="_blank" rel="noopener" class="inline-block hover:opacity-90 transition-opacity">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr?size=250x83" alt="App Store에서 다운로드" class="h-12 w-auto">
+          </a>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">link</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.ios.s2.h">② 링크로 접속</h3>
+          <p class="text-[#5f5e5e]" data-i18n="um.ios.s2.p">선생님이 보내주신 Meet 링크를 탭하면 자동으로 앱이 열립니다. 이름 입력 후 <strong>참가 요청</strong>을 탭하세요.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">mic</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.ios.s3.h">③ 카메라·마이크 권한</h3>
+          <p class="text-[#5f5e5e]" data-i18n="um.ios.s3.p">앱 첫 실행 시 카메라와 마이크 사용 권한을 요청합니다. <strong>"앱을 사용하는 동안 허용"</strong>을 선택하세요.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">wifi</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.ios.s4.h">④ 안정적인 네트워크</h3>
+          <p class="text-[#5f5e5e]" data-i18n="um.ios.s4.p">수업 중 끊김 없는 화상 통화를 위해 <strong>Wi-Fi 환경</strong>을 권장합니다. 데이터 사용 시 LTE/5G를 확인하세요.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Android Panel -->
+    <div id="panel-android" class="tab-panel">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Video guide -->
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal md:col-span-2">
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-[#775a00]">smart_display</span> <span data-i18n="um.and.video.h">영상으로 보는 접속 방법 (갤럭시 · Android)</span></h3>
+          <div class="relative mx-auto w-full rounded-xl overflow-hidden bg-black" style="aspect-ratio:9/16; max-width:300px;">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/4w2z4IcWBH0"
+              title="Android에서 Google Meet 접속 방법" loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">download</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.and.s1.h">① Google Meet 앱 설치</h3>
+          <p class="text-[#5f5e5e] mb-4" data-i18n="um.and.s1.p">Play 스토어에서 <strong>Google Meet</strong> 앱을 설치합니다. 삼성 갤럭시 기기에는 기본 설치되어 있을 수 있습니다.</p>
+          <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.meetings" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 bg-[#34a853] text-white px-5 py-3 rounded-xl text-sm font-bold hover:bg-[#1e8e3e] transition-colors">
+            <span class="material-symbols-outlined text-lg">android</span> Play 스토어에서 다운로드
+          </a>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">link</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.and.s2.h">② 링크로 접속</h3>
+          <p class="text-[#5f5e5e]" data-i18n="um.and.s2.p">선생님이 보내주신 링크를 탭하면 Google Meet 앱이 자동으로 열립니다. 이름 입력 후 참가 요청을 누르세요.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">settings</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.and.s3.h">③ 앱 권한 설정</h3>
+          <p class="text-[#5f5e5e]" data-i18n="um.and.s3.p">설정 → 앱 → Google Meet → 권한에서 카메라·마이크가 <strong>허용</strong>으로 설정되어 있는지 확인하세요.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-card reveal">
+          <div class="w-12 h-12 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-5">
+            <span class="material-symbols-outlined text-[#775a00] text-2xl">headphones</span>
+          </div>
+          <h3 class="font-bold text-xl mb-3" data-i18n="um.and.s4.h">④ 이어폰 사용 권장</h3>
+          <p class="text-[#5f5e5e]" data-i18n="um.and.s4.p">모바일 수업 시 이어폰(유선 또는 블루투스)을 사용하면 에코 없이 더 선명하게 수업할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="py-16 bg-white">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl font-bold mb-2" data-i18n="um.tips.h2">수업 환경 최적화 팁</h2>
+      <p class="text-[#5f5e5e]" data-i18n="um.tips.p">이것만 준비하면 수업 효과가 2배!</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
+      <div class="bg-[#f5f3f3] rounded-2xl p-6 text-center">
+        <span class="material-symbols-outlined text-[#775a00] text-4xl mb-3" style="font-variation-settings:'FILL' 1;">wifi</span>
+        <h4 class="font-bold mb-2" data-i18n="um.tip1.h">안정적인 인터넷</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="um.tip1.p">유선 인터넷 또는 강한 Wi-Fi 신호에서 수업하세요.</p>
+      </div>
+      <div class="bg-[#f5f3f3] rounded-2xl p-6 text-center">
+        <span class="material-symbols-outlined text-[#775a00] text-4xl mb-3" style="font-variation-settings:'FILL' 1;">light_mode</span>
+        <h4 class="font-bold mb-2" data-i18n="um.tip2.h">충분한 조명</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="um.tip2.p">얼굴이 잘 보이도록 창문을 등지지 말고 정면에서 빛이 오도록 하세요.</p>
+      </div>
+      <div class="bg-[#f5f3f3] rounded-2xl p-6 text-center">
+        <span class="material-symbols-outlined text-[#775a00] text-4xl mb-3" style="font-variation-settings:'FILL' 1;">headphones</span>
+        <h4 class="font-bold mb-2" data-i18n="um.tip3.h">이어폰 또는 헤드셋</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="um.tip3.p">마이크 내장 이어폰을 사용하면 에코와 주변 소음을 줄일 수 있습니다.</p>
+      </div>
+      <div class="bg-[#f5f3f3] rounded-2xl p-6 text-center">
+        <span class="material-symbols-outlined text-[#775a00] text-4xl mb-3" style="font-variation-settings:'FILL' 1;">volume_off</span>
+        <h4 class="font-bold mb-2" data-i18n="um.tip4.h">조용한 환경</h4>
+        <p class="text-sm text-[#5f5e5e]" data-i18n="um.tip4.p">주변 소음이 없는 조용한 공간에서 수업하면 집중력이 높아집니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 bg-[#f5f3f3]">
+  <div class="max-w-[800px] mx-auto px-4 md:px-6">
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl font-bold mb-2" data-i18n="um.faq.h2">자주 묻는 질문</h2>
+      <p class="text-[#5f5e5e]" data-i18n="um.faq.p">Google Meet 관련 궁금한 점을 확인하세요</p>
+    </div>
+    <div class="space-y-3 reveal">
+
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-card">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-base" data-i18n="um.faq1.q">Google Meet는 유료인가요?</span>
+          <span class="material-symbols-outlined text-[#775a00] faq-chevron">expand_more</span>
+        </button>
+        <div class="faq-body px-6">
+          <p class="text-[#5f5e5e] pb-5" data-i18n="um.faq1.a">아니요. Google Meet 기본 기능은 완전 무료입니다. 구글 계정 없이도 링크를 통해 수업에 참여할 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-card">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-base" data-i18n="um.faq2.q">수업 링크는 어디서 받나요?</span>
+          <span class="material-symbols-outlined text-[#775a00] faq-chevron">expand_more</span>
+        </button>
+        <div class="faq-body px-6">
+          <p class="text-[#5f5e5e] pb-5" data-i18n="um.faq2.a">수업 링크는 선생님이 수업 전에 문자 메시지 또는 카카오톡으로 개별 전송해 드립니다. 링크는 수업마다 동일하거나 새로 발급될 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-card">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-base" data-i18n="um.faq3.q">카메라나 마이크가 작동하지 않아요.</span>
+          <span class="material-symbols-outlined text-[#775a00] faq-chevron">expand_more</span>
+        </button>
+        <div class="faq-body px-6">
+          <div class="pb-5 space-y-2 text-[#5f5e5e]">
+            <p>다음 순서로 확인해 보세요:</p>
+            <ol class="list-decimal list-inside space-y-1 text-sm">
+              <li>크롬 브라우저 주소창 왼쪽 자물쇠 아이콘 클릭 → 카메라/마이크 권한 "허용" 확인</li>
+              <li>다른 프로그램(화상회의, 녹화 앱 등)이 카메라/마이크를 점유하고 있는지 확인 후 종료</li>
+              <li>브라우저를 완전히 종료 후 재실행</li>
+              <li>위 방법으로 해결이 안 되면 op@italk.ne.kr로 문의해 주세요.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-card">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-base" data-i18n="um.faq4.q">수업 중 연결이 자꾸 끊겨요.</span>
+          <span class="material-symbols-outlined text-[#775a00] faq-chevron">expand_more</span>
+        </button>
+        <div class="faq-body px-6">
+          <div class="pb-5 space-y-2 text-[#5f5e5e] text-sm">
+            <p>인터넷 연결 문제가 가장 흔한 원인입니다. 아래를 확인해 보세요:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Wi-Fi 라우터에 가까이 이동하거나 유선 케이블을 사용하세요</li>
+              <li>다른 가족이 동영상 스트리밍 등 대용량 인터넷을 사용 중인지 확인하세요</li>
+              <li>불필요한 탭이나 프로그램을 닫아 대역폭을 확보하세요</li>
+              <li>모바일의 경우 LTE/5G로 전환해 보세요</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-card">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+          <span class="font-semibold text-base" data-i18n="um.faq5.q">수업을 녹화할 수 있나요?</span>
+          <span class="material-symbols-outlined text-[#775a00] faq-chevron">expand_more</span>
+        </button>
+        <div class="faq-body px-6">
+          <p class="text-[#5f5e5e] pb-5" data-i18n="um.faq5.a">수업 녹화는 선생님과 학생 양측의 동의가 있을 때만 가능합니다. 복습을 원하신다면 수업 시작 전 선생님에게 미리 말씀해 주세요.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="py-16 bg-white">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6">
+    <div class="bg-[#121212] rounded-[2.5rem] p-10 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center reveal">
+      <div>
+        <p class="text-xs font-bold tracking-widest uppercase text-[#ffdf97] mb-4" data-i18n="um.contact.badge">도움이 필요하신가요?</p>
+        <h2 class="text-3xl font-bold text-[#fbf9f8] mb-4" data-i18n="um.contact.h2">기술적 문제가 있으시면 연락해 주세요</h2>
+        <p class="text-[#c4c7ca] mb-6" data-i18n="um.contact.p">Google Meet 접속, 카메라·마이크 설정 등 기술적인 문제는 아래 연락처로 문의해 주시면 도움드립니다.</p>
+        <div class="space-y-3">
+          <a href="tel:010-9052-5935" class="flex items-center gap-3 text-[#fbf9f8] hover:text-[#ffcd4a] transition-colors">
+            <span class="material-symbols-outlined text-[#ffcd4a]" style="font-variation-settings:'FILL' 1;">call</span>
+            010-9052-5935
+          </a>
+          <a href="mailto:op@italk.ne.kr" class="flex items-center gap-3 text-[#fbf9f8] hover:text-[#ffcd4a] transition-colors">
+            <span class="material-symbols-outlined text-[#ffcd4a]" style="font-variation-settings:'FILL' 1;">mail</span>
+            op@italk.ne.kr
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <a href="https://meet.google.com" target="_blank" rel="noopener"
+          class="bg-[#ffcd4a] text-[#735700] px-8 py-4 rounded-xl font-bold text-base text-center hover:bg-[#ffdf97] transition-all">
+          <span data-i18n="um.contact.btn1">Google Meet 바로 접속하기</span>
+        </a>
+        <a href="index.html" class="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold text-base text-center hover:bg-white/10 transition-all">
+          <span data-i18n="um.contact.btn2">무료 체험 수업 신청하기</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#e4e2e2]">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-6 py-10 flex flex-col md:flex-row justify-between items-start gap-6">
+    <div>
+      <div class="text-2xl font-extrabold text-[#775a00] mb-2">ITALK</div>
+      <p class="text-sm text-[#636262]" data-i18n="footer.copy">© 2025 ITALK CO. LTD 모든 권리 보유</p>
+      <p class="text-xs text-[#636262] mt-1" data-i18n="um.footer.biz">사업자등록번호: 130-47-60022 | 대표: 정찬미</p>
+    </div>
+    <div class="flex flex-wrap gap-4 text-sm text-[#636262]">
+      <a href="index.html"      class="hover:text-[#775a00]" data-i18n="nav.home">홈</a>
+      <a href="teachers.html"   class="hover:text-[#775a00]" data-i18n="nav.teachers">선생님 소개</a>
+      <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
+      <a href="books.html"      class="hover:text-[#775a00]" data-i18n="nav.books">대표 교재</a>
+    </div>
+  </div>
+</footer>
+
+<script src="image-fallback.js"></script>
+<script src="lang.js"></script>
+<script>
+// Nav
+const hamburger = document.getElementById('hamburger');
+const icon = document.getElementById('hamburger-icon');
+const menu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => { const o = menu.classList.toggle('open'); icon.textContent = o ? 'close' : 'menu'; });
+
+// Reveal
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.05 }).observe(el);
+});
+
+// Device tabs
+function switchTab(id) {
+  ['pc','iphone','android'].forEach(t => {
+    document.getElementById('panel-' + t).classList.remove('active');
+    const btn = document.getElementById('tab-' + t);
+    if (btn) {
+      btn.classList.remove('tab-active','border-[#775a00]','text-[#775a00]');
+      btn.classList.add('border-transparent','text-[#5f5e5e]');
+    }
+  });
+  document.getElementById('panel-' + id).classList.add('active');
+  const activeBtn = document.getElementById('tab-' + id);
+  if (activeBtn) {
+    activeBtn.classList.add('tab-active','border-[#775a00]','text-[#775a00]');
+    activeBtn.classList.remove('border-transparent','text-[#5f5e5e]');
+  }
+}
+
+// FAQ accordion
+document.querySelectorAll('.faq-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const chevron = btn.querySelector('.faq-chevron');
+    const isOpen = body.classList.toggle('open');
+    chevron.classList.toggle('open', isOpen);
+  });
+});
+</script>
+</body>
+</html>
