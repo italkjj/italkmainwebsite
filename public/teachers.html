@@ -13,7 +13,8 @@
   /* Flip card — teachers.html specific */
   .flip-card { perspective: 1000px; }
   .flip-inner { transition: transform 0.6s; transform-style: preserve-3d; position:relative; }
-  .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+  .flip-card:hover .flip-inner,
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
   .flip-front, .flip-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .flip-back { transform: rotateY(180deg); position:absolute; inset:0; }
 </style>
@@ -68,7 +69,7 @@
 <section class="bg-[#121212] pt-20 pb-24 relative overflow-hidden">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10 text-center">
     <p class="text-xs font-bold tracking-widest uppercase text-[#ffdf97] mb-4" data-i18n="tp.badge">우리 강사진</p>
-    <h1 class="text-5xl font-extrabold text-[#fbf9f8] mb-5 tracking-tight" data-i18n="tp.h1">선생님 소개</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-[#fbf9f8] mb-5 tracking-tight" data-i18n="tp.h1">선생님 소개</h1>
     <p class="text-lg text-[#c4c7ca] max-w-2xl mx-auto" data-i18n="tp.p">평균 15년 이상의 교육 경력을 가진 7명의 전문 원어민 강사를 소개합니다.<br>카드에 마우스를 올리면 더 자세한 정보를 확인할 수 있습니다.</p>
     <div class="flex flex-wrap justify-center gap-4 mt-8">
       <div class="bg-white/10 rounded-full px-4 py-2 text-sm text-[#fbf9f8] font-medium"><span data-i18n="tp.chip1">👩‍‍🏫 전문 강사 7명</span></div>
@@ -105,7 +106,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.masters">석사</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <!-- Back -->
@@ -161,7 +162,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.exp17">경력 17년</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
@@ -213,7 +214,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.japanese">일본 학생 경험</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
@@ -261,7 +262,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.telf">TELF/TESOL</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
@@ -316,7 +317,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.corp">기업 연수</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
@@ -366,7 +367,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.exp18">경력 18년</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
@@ -417,7 +418,7 @@
                   <span class="bg-[#ffcd4a]/15 text-[#735700] text-xs px-2.5 py-1 rounded-full font-semibold" data-i18n="tp.chip.practical">실용 영어 특화</span>
                 </div>
               </div>
-              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">카드를 뒤집어 자세히 보기 →</p>
+              <p class="text-sm text-[#5f5e5e] mt-3" data-i18n="tp.flip">탭하거나 마우스를 올려 자세히 보기 →</p>
             </div>
           </div>
           <div class="flip-back bg-[#121212] rounded-[2rem] shadow-card h-full flex flex-col p-7">
@@ -458,7 +459,7 @@
 <!-- CTA -->
 <section class="py-20 bg-white">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6">
-    <div class="bg-[#121212] rounded-[2.5rem] p-12 text-center relative overflow-hidden">
+    <div class="bg-[#121212] rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-12 text-center relative overflow-hidden">
       <div class="relative z-10">
         <h2 class="text-3xl font-extrabold text-[#fbf9f8] mb-4" data-i18n="tp.cta.h2">마음에 드는 선생님을 찾으셨나요?</h2>
         <p class="text-[#c4c7ca] mb-8" data-i18n="tp.cta.p">첫 수업은 무료입니다. 지금 바로 체험해 보세요.</p>
@@ -508,6 +509,11 @@ const hamburger = document.getElementById('hamburger');
 const icon = document.getElementById('hamburger-icon');
 const menu = document.getElementById('mobile-menu');
 hamburger.addEventListener('click', () => { const o = menu.classList.toggle('open'); icon.textContent = o ? 'close' : 'menu'; });
+
+// Flip cards — tap to flip on touch devices
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+});
 
 document.querySelectorAll('.reveal').forEach(el => {
   new IntersectionObserver((entries, obs) => {

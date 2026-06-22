@@ -76,7 +76,7 @@
         <span class="material-symbols-outlined text-[#775a00] text-[16px]" style="font-variation-settings:'FILL' 1;">star</span>
         <span class="text-[#775a00] font-bold text-xs tracking-widest uppercase" data-i18n="hero.badge">8년의 신뢰</span>
       </div>
-      <h1 class="text-5xl md:text-6xl font-extrabold text-[#1b1c1c] mb-6 leading-tight tracking-tight">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#1b1c1c] mb-6 leading-tight tracking-tight">
         <span data-i18n="hero.h1.line1">8년째 사랑받는</span><br>
         <span class="text-[#775a00]" data-i18n="hero.h1.line2">아이톡 화상영어</span>
       </h1>
@@ -156,7 +156,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
       <!-- Big card -->
-      <div class="md:col-span-2 bg-white p-10 rounded-[2rem] shadow-card border border-white hover:border-[#775a00]/20 hover:-translate-y-1 transition-all flex flex-col justify-between">
+      <div class="md:col-span-2 bg-white p-6 md:p-10 rounded-[2rem] shadow-card border border-white hover:border-[#775a00]/20 hover:-translate-y-1 transition-all flex flex-col justify-between">
         <div>
           <div class="w-14 h-14 bg-[#ffcd4a]/20 rounded-2xl flex items-center justify-center mb-6">
             <span class="material-symbols-outlined text-[#775a00] text-3xl">verified</span>
@@ -171,7 +171,7 @@
         </div>
       </div>
       <!-- Dark card -->
-      <div class="bg-[#121212] text-white p-10 rounded-[2rem] shadow-card flex flex-col justify-between relative overflow-hidden hover:-translate-y-1 transition-all">
+      <div class="bg-[#121212] text-white p-6 md:p-10 rounded-[2rem] shadow-card flex flex-col justify-between relative overflow-hidden hover:-translate-y-1 transition-all">
         <div class="z-10">
           <span class="material-symbols-outlined text-[#ffdf97] text-4xl mb-6">headset_mic</span>
           <h3 class="text-2xl font-bold mb-3 text-[#fbf9f8]" data-i18n="feat.c2.h3">원어민 1:1 맞춤 수업</h3>
@@ -402,7 +402,7 @@
 <!-- CTA -->
 <section class="py-28">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6">
-    <div class="bg-[#121212] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden reveal">
+    <div class="bg-[#121212] rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden reveal">
       <div class="relative z-10">
         <p class="text-xs font-bold tracking-widest uppercase text-[#ffdf97] mb-4" data-i18n="cta.badge">지금 시작하세요</p>
         <h2 class="text-4xl md:text-5xl font-extrabold text-[#fbf9f8] mb-6 tracking-tight" data-i18n="cta.h2">영어를 바꿀 준비가 되셨나요?</h2>
@@ -477,8 +477,8 @@
 
 <!-- TRIAL MODAL -->
 <div id="trial-modal" class="fixed inset-0 z-[100] items-center justify-center p-4 bg-[#121212]/60 backdrop-blur-sm" aria-modal="true" role="dialog">
-  <div id="modal-box" class="bg-white rounded-[2rem] w-full max-w-lg shadow-2xl overflow-hidden">
-    <div class="bg-[#ffcd4a]/25 px-8 pt-8 pb-6">
+  <div id="modal-box" class="bg-white rounded-[2rem] w-full max-w-lg shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div class="bg-[#ffcd4a]/25 px-5 sm:px-8 pt-8 pb-6">
       <div class="flex items-start justify-between">
         <div>
           <span class="text-xs font-bold tracking-widest uppercase text-[#775a00]" data-i18n="modal.badge">무료 체험 신청</span>
@@ -490,7 +490,7 @@
         </button>
       </div>
     </div>
-    <form id="trial-form" class="px-8 py-6 space-y-4" novalidate>
+    <form id="trial-form" class="px-5 sm:px-8 py-6 space-y-4" novalidate>
       <p class="hidden"><input name="bot-field"></p>
       <div>
         <label class="block text-sm font-semibold text-[#1b1c1c] mb-1.5" for="f-name"><span data-i18n="modal.name">이름</span> <span class="text-[#ba1a1a]">*</span></label>

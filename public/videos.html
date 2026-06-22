@@ -74,7 +74,7 @@
 <section class="bg-[#775a00] pt-20 pb-24 relative overflow-hidden">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10 text-center">
     <p class="text-xs font-bold tracking-widest uppercase text-[#ffdf97] mb-4" data-i18n="vid.badge">강사 소개 영상</p>
-    <h1 class="text-5xl font-extrabold text-white mb-5 tracking-tight" data-i18n="vid.h1">선생님 소개 영상</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-5 tracking-tight" data-i18n="vid.h1">선생님 소개 영상</h1>
     <p class="text-lg text-[#ffdf97]/80 max-w-xl mx-auto" data-i18n="vid.sub">수업 전 선생님의 영상을 보고 나에게 맞는 강사를 미리 만나보세요.</p>
   </div>
   <div class="absolute bottom-0 left-0 right-0 h-16 bg-[#fbf9f8]" style="clip-path:ellipse(55% 100% at 50% 100%)"></div>
@@ -245,8 +245,8 @@
     <button onclick="closeVideo()" class="absolute -top-12 right-0 text-white/80 hover:text-white flex items-center gap-1 text-sm font-semibold">
       <span class="material-symbols-outlined">close</span> <span data-i18n="vid.close">닫기</span>
     </button>
-    <div id="yt-frame-wrap" class="relative rounded-2xl overflow-hidden bg-black shadow-2xl">
-      <iframe id="yt-frame" src="" class="w-full" style="height:500px;" frameborder="0"
+    <div id="yt-frame-wrap" class="relative rounded-2xl overflow-hidden bg-black shadow-2xl" style="aspect-ratio:16/9;">
+      <iframe id="yt-frame" src="" class="absolute inset-0 w-full h-full" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
