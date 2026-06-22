@@ -18,6 +18,7 @@
       'nav.books':     'Books',
       'nav.guide':     'Guide',
       'nav.trial':     'Free Trial',
+      'nav.login':     'Login / Sign Up',
 
       /* ── Index: Hero ── */
       'hero.badge':           '8 Years of Trust',
@@ -317,6 +318,7 @@
       'nav.books':     '主要教材',
       'nav.guide':     '使用指南',
       'nav.trial':     '免费体验',
+      'nav.login':     '登录 / 注册',
 
       /* ── Index: Hero ── */
       'hero.badge':           '8年的信赖',

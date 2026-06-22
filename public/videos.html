@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   /* Video thumbnails & modal — videos.html specific */
   .video-thumb { position:relative; cursor:pointer; overflow:hidden; }
@@ -44,7 +45,8 @@
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       </div>
-      <a href="index.html" class="hidden lg:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</a>
+      <a href="https://italk-teachers.web.app/index.html" class="hidden md:flex items-center gap-1.5 border border-[#d2c5ae] text-[#4e4634] px-4 py-2 rounded-full font-semibold text-sm hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
+      <button class="trial-btn hidden lg:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
       <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-[#efeded]">
         <span class="material-symbols-outlined text-[#1b1c1c]" id="hamburger-icon">menu</span>
       </button>
@@ -64,6 +66,8 @@
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       </div>
+      <button class="trial-btn mt-1 bg-[#ffcd4a] text-[#735700] py-3 rounded-xl font-bold text-sm active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+      <a href="https://italk-teachers.web.app/index.html" class="mt-1 border border-[#d2c5ae] text-[#4e4634] py-3 rounded-xl font-semibold text-sm text-center hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
     </div>
   </div>
 </nav>
@@ -253,6 +257,7 @@
 </div>
 
 <script src="image-fallback.js"></script>
+<script src="trial-modal.js"></script>
 <script src="lang.js"></script>
 <script>
 const hamburger = document.getElementById('hamburger');
