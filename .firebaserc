@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "italk-teachers"
+  },
+  "targets": {
+    "italk-teachers": {
+      "hosting": {
+        "public": ["italk-public"]
+      }
+    }
+  }
+}
