@@ -20,7 +20,7 @@
 <nav class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-[#d2c5ae]/30">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between h-20">
     <a href="index.html" class="flex items-center" aria-label="ITALK 홈"><img src="assets/logo.png" alt="ITALK" class="h-9 md:h-10 w-auto"></a>
-    <div class="hidden md:flex items-center gap-5">
+    <div class="hidden min-[1000px]:flex items-center gap-5">
       <a href="index.html"        class="nav-link text-[#775a00] border-b-2 border-[#775a00] pb-1 font-bold text-sm tracking-widest uppercase" data-i18n="nav.home">홈</a>
       <a href="teachers.html"     class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.teachers">선생님 소개</a>
       <a href="videos.html"       class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
@@ -28,19 +28,19 @@
       <a href="usemeet.html"      class="nav-link text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.guide">이용 가이드</a>
     </div>
     <div class="flex items-center gap-3">
-      <div class="hidden md:flex items-center gap-0.5 border border-[#d2c5ae]/50 rounded-lg p-0.5">
+      <div class="flex items-center gap-0.5 border border-[#d2c5ae]/50 rounded-lg p-0.5">
         <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       </div>
-      <a href="https://italk-teachers.web.app/index.html" class="hidden md:flex items-center gap-1.5 border border-[#d2c5ae] text-[#4e4634] px-4 py-2 rounded-full font-semibold text-sm hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
-      <button class="trial-btn hidden lg:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
-      <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-[#efeded] transition-colors">
+      <a href="https://italk-teachers.web.app/index.html" class="hidden min-[1000px]:flex items-center gap-1.5 border border-[#d2c5ae] text-[#4e4634] px-4 py-2 rounded-full font-semibold text-sm hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
+      <button class="trial-btn hidden min-[450px]:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+      <button id="hamburger" class="min-[1000px]:hidden p-2 rounded-lg hover:bg-[#efeded] transition-colors">
         <span class="material-symbols-outlined text-[#1b1c1c]" id="hamburger-icon">menu</span>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden bg-white border-t border-[#d2c5ae]/20">
+  <div id="mobile-menu" class="min-[1000px]:hidden bg-white border-t border-[#d2c5ae]/20">
     <div class="flex flex-col px-4 py-3 gap-1">
       <a href="index.html"        class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.home">홈</a>
       <a href="teachers.html"     class="mobile-nav-link px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.teachers">선생님 소개</a>
@@ -53,8 +53,8 @@
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       </div>
-      <button class="trial-btn mt-1 bg-[#ffcd4a] text-[#735700] py-3 rounded-xl font-bold text-sm active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
-      <a href="https://italk-teachers.web.app/index.html" class="mt-1 border border-[#d2c5ae] text-[#4e4634] py-3 rounded-xl font-semibold text-sm text-center hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
+      <button class="trial-btn mt-1 min-[450px]:hidden bg-[#ffcd4a] text-[#735700] py-3 rounded-xl font-bold text-sm active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+      <a href="https://italk-teachers.web.app/index.html" class="mt-1 min-[1000px]:hidden border border-[#d2c5ae] text-[#4e4634] py-3 rounded-xl font-semibold text-sm text-center hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
     </div>
   </div>
 </nav>
@@ -248,7 +248,7 @@
 <section class="py-28 bg-[#f5f3f3]">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6">
     <div class="text-center mb-16 reveal">
-      <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-3">수강생 후기</p>
+      <p class="text-xs font-bold tracking-widest uppercase text-[#775a00] mb-3" data-i18n="idx.reviews.badge">수강생 후기</p>
       <h2 class="text-4xl font-bold text-[#1b1c1c] mb-4" data-i18n="rev.h2">직접 경험한 변화</h2>
       <p class="text-base text-[#5f5e5e]" data-i18n="rev.p">아이톡과 함께 영어 자신감을 찾은 수강생들의 이야기</p>
     </div>
@@ -428,41 +428,41 @@
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
     <div>
       <div class="text-2xl font-extrabold text-[#775a00] mb-4">ITALK</div>
-      <p class="text-sm text-[#636262] leading-relaxed">1:1 화상 영어와 8년의 신뢰로<br>영어 교육의 가치를 높입니다.</p>
+      <p class="text-sm text-[#636262] leading-relaxed" data-i18n="footer.tagline">1:1 화상 영어와 8년의 신뢰로<br>영어 교육의 가치를 높입니다.</p>
     </div>
     <div>
-      <h5 class="text-xs font-bold tracking-widest uppercase mb-5">바로가기</h5>
+      <h5 class="text-xs font-bold tracking-widest uppercase mb-5" data-i18n="footer.links">바로가기</h5>
       <ul class="space-y-3">
-        <li><a href="teachers.html"  class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">선생님 소개</a></li>
-        <li><a href="videos.html"    class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">소개 영상</a></li>
-        <li><a href="classvideo.html" class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">수업 영상</a></li>
-        <li><a href="books.html"     class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">대표 교재</a></li>
-        <li><a href="usemeet.html"   class="text-sm text-[#636262] hover:text-[#775a00] transition-colors">Google Meet 이용 방법</a></li>
+        <li><a href="teachers.html"   class="text-sm text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="nav.teachers">선생님 소개</a></li>
+        <li><a href="videos.html"     class="text-sm text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="nav.videos">소개 영상</a></li>
+        <li><a href="classvideo.html" class="text-sm text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="nav.classvideo">수업 영상</a></li>
+        <li><a href="books.html"      class="text-sm text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="nav.books">대표 교재</a></li>
+        <li><a href="usemeet.html"    class="text-sm text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="nav.guide">Google Meet 이용 방법</a></li>
       </ul>
     </div>
     <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div>
-        <h5 class="text-xs font-bold tracking-widest uppercase mb-5">사업자 정보</h5>
+        <h5 class="text-xs font-bold tracking-widest uppercase mb-5" data-i18n="footer.biz">사업자 정보</h5>
         <div class="space-y-2 text-sm text-[#636262]">
-          <p><span class="font-semibold text-[#1b1c1c]">대표자</span>  정찬미</p>
-          <p><span class="font-semibold text-[#1b1c1c]">사업자등록번호</span>  130-47-60022</p>
-          <p><span class="font-semibold text-[#1b1c1c]">전화</span>  010-9052-5935</p>
-          <p><span class="font-semibold text-[#1b1c1c]">이메일</span>  op@italk.ne.kr</p>
+          <p><span class="font-semibold text-[#1b1c1c]" data-i18n="footer.biz.rep">대표자</span>  정찬미</p>
+          <p><span class="font-semibold text-[#1b1c1c]" data-i18n="footer.biz.reg">사업자등록번호</span>  130-47-60022</p>
+          <p><span class="font-semibold text-[#1b1c1c]" data-i18n="footer.biz.tel">전화</span>  010-9052-5935</p>
+          <p><span class="font-semibold text-[#1b1c1c]" data-i18n="footer.biz.email">이메일</span>  op@italk.ne.kr</p>
         </div>
       </div>
       <div>
-        <h5 class="text-xs font-bold tracking-widest uppercase mb-5">주소</h5>
-        <p class="text-sm text-[#636262] leading-relaxed">서울특별시 서초구<br>서초대로77길 9<br>누드죤빌딩 9층 902호</p>
+        <h5 class="text-xs font-bold tracking-widest uppercase mb-5" data-i18n="footer.addr">주소</h5>
+        <p class="text-sm text-[#636262] leading-relaxed" data-i18n="footer.addr.text">서울특별시 서초구<br>서초대로77길 9<br>누드죤빌딩 9층 902호</p>
       </div>
     </div>
   </div>
   <div class="border-t border-[#d2c5ae]/30 py-6">
     <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-3">
-      <p class="text-xs text-[#636262]">© 2025 ITALK CO. LTD 모든 권리 보유</p>
+      <p class="text-xs text-[#636262]" data-i18n="footer.copy">© 2025 ITALK CO. LTD 모든 권리 보유</p>
       <div class="flex gap-4">
-        <a href="https://meet.google.com" target="_blank" rel="noopener" class="text-xs text-[#636262] hover:text-[#775a00] transition-colors">Google Meet 접속</a>
+        <a href="https://meet.google.com" target="_blank" rel="noopener" class="text-xs text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="footer.meet">Google Meet 접속</a>
         <span class="text-[#d2c5ae]">|</span>
-        <a href="mailto:op@italk.ne.kr" class="text-xs text-[#636262] hover:text-[#775a00] transition-colors">이메일 문의</a>
+        <a href="mailto:op@italk.ne.kr" class="text-xs text-[#636262] hover:text-[#775a00] transition-colors" data-i18n="footer.email.link">이메일 문의</a>
       </div>
     </div>
   </div>

@@ -26,7 +26,7 @@
 <nav class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-[#d2c5ae]/30">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between h-20">
     <a href="index.html" class="flex items-center" aria-label="ITALK 홈"><img src="assets/logo.png" alt="ITALK" class="h-9 md:h-10 w-auto"></a>
-    <div class="hidden md:flex items-center gap-8">
+    <div class="hidden min-[1000px]:flex items-center gap-8">
       <a href="index.html"      class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.home">홈</a>
       <a href="teachers.html"   class="text-[#775a00] border-b-2 border-[#775a00] pb-1 font-bold text-sm tracking-widest uppercase" data-i18n="nav.teachers">선생님 소개</a>
       <a href="videos.html"     class="text-[#4e4634] hover:text-[#775a00] transition-colors font-semibold text-sm tracking-widest uppercase" data-i18n="nav.videos">소개 영상</a>
@@ -35,19 +35,19 @@
     </div>
     <div class="flex items-center gap-3">
       <!-- Lang switcher -->
-      <div class="hidden md:flex items-center gap-0.5 border border-[#d2c5ae]/50 rounded-lg p-0.5">
+      <div class="flex items-center gap-0.5 border border-[#d2c5ae]/50 rounded-lg p-0.5">
         <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       </div>
-      <a href="https://italk-teachers.web.app/index.html" class="hidden md:flex items-center gap-1.5 border border-[#d2c5ae] text-[#4e4634] px-4 py-2 rounded-full font-semibold text-sm hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
-      <button class="trial-btn hidden lg:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
-      <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-[#efeded]">
+      <a href="https://italk-teachers.web.app/index.html" class="hidden min-[1000px]:flex items-center gap-1.5 border border-[#d2c5ae] text-[#4e4634] px-4 py-2 rounded-full font-semibold text-sm hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
+      <button class="trial-btn hidden min-[450px]:block bg-[#ffcd4a] text-[#735700] px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-95 active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+      <button id="hamburger" class="min-[1000px]:hidden p-2 rounded-lg hover:bg-[#efeded]">
         <span class="material-symbols-outlined text-[#1b1c1c]" id="hamburger-icon">menu</span>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden bg-white border-t border-[#d2c5ae]/20">
+  <div id="mobile-menu" class="min-[1000px]:hidden bg-white border-t border-[#d2c5ae]/20">
     <div class="flex flex-col px-4 py-3 gap-1">
       <a href="index.html"      class="px-4 py-3 rounded-xl font-semibold text-[#1b1c1c] hover:bg-[#f5f3f3]" data-i18n="nav.home">홈</a>
       <a href="teachers.html"   class="px-4 py-3 rounded-xl font-semibold text-[#775a00] bg-[#ffcd4a]/10" data-i18n="nav.teachers">선생님 소개</a>
@@ -61,8 +61,8 @@
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
       </div>
-      <button class="trial-btn mt-1 bg-[#ffcd4a] text-[#735700] py-3 rounded-xl font-bold text-sm active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
-      <a href="https://italk-teachers.web.app/index.html" class="mt-1 border border-[#d2c5ae] text-[#4e4634] py-3 rounded-xl font-semibold text-sm text-center hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
+      <button class="trial-btn mt-1 min-[450px]:hidden bg-[#ffcd4a] text-[#735700] py-3 rounded-xl font-bold text-sm active:scale-95 transition-all" data-i18n="nav.trial">무료 체험 시작</button>
+      <a href="https://italk-teachers.web.app/index.html" class="mt-1 min-[1000px]:hidden border border-[#d2c5ae] text-[#4e4634] py-3 rounded-xl font-semibold text-sm text-center hover:border-[#775a00] hover:text-[#775a00] transition-all" data-i18n="nav.login">로그인 / 회원가입</a>
     </div>
   </div>
 </nav>
@@ -498,7 +498,7 @@
       <h5 class="text-xs font-bold tracking-widest uppercase mb-4" data-i18n="footer.contact.label">문의</h5>
       <p class="text-sm text-[#636262]">010-9052-5935</p>
       <p class="text-sm text-[#636262]">op@italk.ne.kr</p>
-      <p class="text-sm text-[#636262] mt-2">서울 서초구 서초대로77길 9<br>누드죤빌딩 9층 902호</p>
+      <p class="text-sm text-[#636262] mt-2" data-i18n="tp.footer.addr">서울 서초구 서초대로77길 9<br>누드죤빌딩 9층 902호</p>
     </div>
   </div>
   <div class="border-t border-[#d2c5ae]/30 py-5 text-center">
