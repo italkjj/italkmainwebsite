@@ -544,6 +544,8 @@
     saveOriginals();
     var saved = localStorage.getItem('italk-lang') || 'ko';
     applyLang(saved);
+    // Reveal page hidden by the anti-FOUC inline script in <head>
+    document.documentElement.style.visibility = '';
   }
 
   if (document.readyState === 'loading') {
