@@ -2,9 +2,9 @@
 // Load this script BEFORE lang.js so data-i18n elements are in the DOM when lang.js runs.
 
 // ── EmailJS configuration ─────────────────────────────────────────────────
-const TRIAL_EMAILJS_SERVICE_ID  = 'service_ydbmks1';
-const TRIAL_EMAILJS_TEMPLATE_ID = 'template_w21jkas';
-const TRIAL_EMAILJS_PUBLIC_KEY  = 'mUzj_VvL-__k6ltia';
+const TRIAL_EMAILJS_SERVICE_ID  = 'service_24g7poi';
+const TRIAL_EMAILJS_TEMPLATE_ID = 'template_ef71v5b';
+const TRIAL_EMAILJS_PUBLIC_KEY  = '4_7MfuOBZ-dISzPbz';
 // ─────────────────────────────────────────────────────────────────────────
 
 (function () {
